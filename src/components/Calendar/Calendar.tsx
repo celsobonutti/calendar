@@ -1,23 +1,17 @@
 import React from 'react';
-import { eachDayOfInterval } from 'date-fns';
-import { endOfMonth } from 'date-fns/fp';
 
-import { Week, Weekdays } from '../../components';
+import { Weekdays } from '../../components';
 import styled from 'styled-components';
+import { CalendarGrid } from '../UI/UI';
+import { getDaysForMonth } from '../../utils/getDaysForMonth';
+import { Day } from '../Day/Day';
 
 const Table = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 
   max-width: 1500px;
 `;
-
-const days = eachDayOfInterval({
-  start: new Date(2020, 4, 1),
-  end: new Date(),
-});
-
-const subDays = days.slice(0, 7);
 
 interface CalendarProps {
   year: number;
@@ -25,17 +19,16 @@ interface CalendarProps {
 }
 
 export const Calendar = ({ year, month }: CalendarProps) => {
-  const date = new Date(year, month);
-
-  const days = eachDayOfInterval({
-    start: date,
-    end: endOfMonth(date),
-  });
+  const days = getDaysForMonth({ year, month });
 
   return (
     <Table role="table" aria-label="Calendar">
       <Weekdays />
-      
+      <CalendarGrid numberOfRows={4}>
+        {days.map((day) => (
+          <Day day={day} key={day.toString()} />
+        ))}
+      </CalendarGrid>
     </Table>
   );
 };
