@@ -6,10 +6,12 @@ import { Reminder } from '../../types';
 const Container = styled.div`
   border: 1px solid black;
 `;
+
 interface DayProps {
-  reminders?: Reminder[];
+  day: Date;
 }
 
-export const Day = (props: DayProps) => {
+export const Day = ({day}: DayProps) => {
+
   return <Container></Container>;
 };
