@@ -22,3 +22,14 @@ export const Group = styled.div.attrs(props => ({
 }))`
   width: 100%;
 `;
+
+interface GridInterface {
+  numberOfRows: number
+};
+
+export const CalendarGrid = styled.div.attrs(props => ({
+  role: props.role ?? 'grid'
+}))<GridInterface>`
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+`;
