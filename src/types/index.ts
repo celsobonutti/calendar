@@ -1,8 +1,6 @@
-export interface Reminder {
-  title: string;
-  id: string;
-}
+import { Reminder as ReminderType, ReminderCompanion as ReminderCompanionType, replaceValues } from './reminder';
 
-export interface ReminderCompanion {
-  title?: string;
-}
+export type Reminder = ReminderType;
+export type ReminderCompanion = ReminderCompanionType;
+
+export { replaceValues };
