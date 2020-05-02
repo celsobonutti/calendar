@@ -28,9 +28,9 @@ interface ContextType {
 export const ReminderContext = React.createContext<{
   state: ReminderState;
   dispatch: Dispatch<ReminderAction>;
-  addReminder: Function;
-  removeReminder: Function;
-  editReminder: Function;
+  addReminder: (reminder: Reminder) => void;
+  removeReminder: (id: string) => void;
+  editReminder: (id: string, newValues: ReminderCompanion) => void;
   getDateReminders: (date: Date) => Reminder[];
 }>({
   state: initialState,
