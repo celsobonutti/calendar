@@ -2,6 +2,9 @@ import React, { useContext } from 'react';
 import { Controller, ErrorMessage, useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import { v4 as UUID } from 'uuid';
+import DateTime from '@nateradebaugh/react-datetime';
+import format from 'date-fns/format';
+import '@nateradebaugh/react-datetime/scss/styles.scss';
 
 import { ColorButton } from '../UI/ColorButton';
 import { Reminder } from '../../types';
@@ -97,7 +100,16 @@ export const ReminderForm = ({ reminder }: ReminderFormProps) => {
           }}
         />
         <ErrorMessage name="color" errors={errors} />
-
+        <Controller 
+          as={DateTime}
+          name="date"
+          value={(watch('date'), '')}
+          defaultValue={new Date()}
+          control={control}
+          rules={{
+            required: 'Field required.'
+          }}
+        />
         <button type="submit">Create Reminder</button>
       </Form>
     </Container>
