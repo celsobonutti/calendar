@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import { Calendar, Modal } from '../../components';
+import { Calendar, Modal, ReminderForm } from '../../components';
+import { useToggler } from '../../hooks/useToggler';
 
 const Container = styled.div`
   display: flex;
@@ -21,7 +22,7 @@ const SelectorContainer = styled.div`
 export const CalendarPage = () => {
   const [year, setYear] = useState(new Date().getFullYear());
   const [month, setMonth] = useState(new Date().getMonth() + 1);
-  const [isModalShown, setModalShown] = useState(false);
+  const { setFalse: hideModal, setTrue: showModal, state: isModalShown } = useToggler(false);
   const [selectedDate, setSelectedDate] = useState<null | Date>(null);
 
   const selectMonth = (value: number) => {
@@ -41,7 +42,9 @@ export const CalendarPage = () => {
   return (
     <Container>
       {isModalShown && (
-        <Modal hideModal={() => setModalShown(false)} />
+        <Modal hideModal={hideModal}>
+          <ReminderForm />
+        </Modal>
       )}
       <SelectorContainer>
         <div>
@@ -71,7 +74,7 @@ export const CalendarPage = () => {
       <Calendar
         onDayClick={(date) => {
           setSelectedDate(date);
-          setModalShown(true);
+          showModal();
         }}
         year={year}
         month={month}
