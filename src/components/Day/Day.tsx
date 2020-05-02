@@ -11,29 +11,61 @@ interface ContainerProps {
 
 const Container = styled.div<ContainerProps>`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+
+
   position: relative;
+  padding: .5em;
 
   cursor: pointer;
 
-  width: 100%;
   height: 8em;
+  background-color: ${(props) => (props.outOfWeek ? '#DDDDDD' : '#F5F5F5')};
+`;
 
-  background-color: ${(props) => (props.outOfWeek ? '#F2F2F2' : 'white')};
+const Overlay = styled.div`
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
 
-  &:hover > p {
-    font-weight: bold;
-    transition: .2s linear;
+  background-color: white;
+  opacity: 0.4;
+
+  &:hover {
+    opacity: 0;
+
+    transition: opacity 0.2s ease-in-out;
   }
 `;
 
-const Date = styled.p`
-  position: absolute;
-  top: 10px;
-  right: 10px;
+const DateContainer = styled.div`
+  align-self: flex-end;
+  margin-bottom: .4em;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  background-color: white;
+`;
+
+const Date = styled.p`
+  font-size: 1em;
   color: ${(props) => props.color};
+
+  ${Container}:hover & {
+    font-weight: bold;
+    transition: 0.2s linear;
+  }
 `;
 
 interface DayProps {
@@ -64,11 +96,14 @@ export const Day = ({ day, outOfMonth, onClick }: DayProps) => {
         onClick(day);
       }}
     >
-      <Date color={color}>
-        <time dateTime={format(day, 'EEEE, MMM do, yyyy')}>{getDate(day)}</time>
-      </Date>
+      <Overlay />
+      <DateContainer>
+        <Date color={color}>
+          <time dateTime={format(day, 'EEEE, MMM do, yyyy')}>{getDate(day)}</time>
+        </Date>
+      </DateContainer>
       {dayReminders.map((reminder) => (
-        <CompactReminder reminder={reminder} />
+        <CompactReminder reminder={reminder} key={reminder.id} />
       ))}
     </Container>
   );
