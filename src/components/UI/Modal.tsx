@@ -18,10 +18,10 @@ const Overlay = styled.div`
 
 const Content = styled.div`
   border-radius: 0.3em;
-  width: 100%;
-  max-width: 800px;
-  height: 400px;
+  max-width: 900px;
   z-index: 201;
+  
+  padding: 1em;
 
   background-color: white;
 `;

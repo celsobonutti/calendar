@@ -43,7 +43,7 @@ export const CalendarPage = () => {
     <Container>
       {isModalShown && (
         <Modal hideModal={hideModal}>
-          <ReminderForm />
+          <ReminderForm onFormSubmitted={hideModal} />
         </Modal>
       )}
       <SelectorContainer>

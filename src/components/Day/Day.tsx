@@ -17,13 +17,12 @@ const Container = styled.div<ContainerProps>`
   overflow: hidden;
   white-space: nowrap;
 
-
   position: relative;
   padding: .5em;
 
   cursor: pointer;
 
-  height: 8em;
+  height: 6em;
   background-color: ${(props) => (props.outOfWeek ? '#DDDDDD' : '#F5F5F5')};
 `;
 
@@ -51,11 +50,6 @@ const DateContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
-  width: 1.5em;
-  height: 1.5em;
-  border-radius: 50%;
-  background-color: white;
 `;
 
 const Date = styled.p`
