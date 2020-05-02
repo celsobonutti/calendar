@@ -28,16 +28,16 @@ interface ContextType {
 export const ReminderContext = React.createContext<{
   state: ReminderState;
   dispatch: Dispatch<ReminderAction>;
-  add: Function;
-  remove: Function;
-  edit: Function;
+  addReminder: Function;
+  removeReminder: Function;
+  editReminder: Function;
   getDateReminders: (date: Date) => Reminder[];
 }>({
   state: initialState,
   dispatch: () => null,
-  add: () => null,
-  remove: () => null,
-  edit: () => null,
+  addReminder: () => null,
+  removeReminder: () => null,
+  editReminder: () => null,
   getDateReminders: () => [],
 });
 
@@ -79,9 +79,9 @@ export const ReminderProvider: FunctionComponent = ({ children }) => {
   const value = {
     state,
     dispatch,
-    add: addReminder,
-    remove: removeReminder,
-    edit: editReminder,
+    addReminder,
+    removeReminder,
+    editReminder,
     getDateReminders,
   };
 
