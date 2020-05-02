@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { TwitterPicker } from 'react-color';
 import { useToggler } from '../../hooks/useToggler';
@@ -41,7 +41,7 @@ export const ColorButton = ({ value, onChange }: ColorButtonProps) => {
 
   return (
     <Container>
-      <Button backgroundColor={value} onClick={showPicker} aria-label="Color picker"/>
+      <Button type="button" backgroundColor={value} onClick={showPicker} aria-label="Color picker"/>
       {isPickerShown && (
         <PopOver>
           <Cover onClick={hidePicker} />

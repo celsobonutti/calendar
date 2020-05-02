@@ -1,5 +1,5 @@
 import React from 'react';
-import { Element, Group, CalendarGrid } from '../UI/UI';
+import { Element, Group, CalendarGrid } from '../UI/Containers';
 import styled from 'styled-components';
 
 const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];

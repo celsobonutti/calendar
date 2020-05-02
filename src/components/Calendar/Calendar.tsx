@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Weekdays } from '../../components';
 import styled from 'styled-components';
-import { CalendarGrid } from '../UI/UI';
+import { CalendarGrid } from '../UI/Containers';
 import { getDaysForMonth } from '../../utils/getDaysForMonth';
 import { Day } from '../Day/Day';
 import { getMonth } from 'date-fns';
