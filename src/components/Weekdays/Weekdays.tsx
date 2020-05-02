@@ -1,16 +1,27 @@
 import React from 'react';
-import { Element, Group, Row } from '../UI/UI';
+import { Element, Group, CalendarGrid } from '../UI/UI';
+import styled from 'styled-components';
 
-const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+const HeaderGrid = styled(CalendarGrid)`
+  height: 2em;
+
+  background-color: #1E90FF;
+`;
+
+const HeaderLabel = styled.p`
+  color: white;
+`;
 
 export const Weekdays = () => (
   <Group>
-    <Row>
+    <HeaderGrid>
       {weekdays.map((weekday) => (
         <Element role="columnheader" aria-sort="none" key={`header-${weekday}`}>
-          {weekday}
+          <HeaderLabel>{weekday}</HeaderLabel>
         </Element>
       ))}
-    </Row>
+    </HeaderGrid>
   </Group>
 );
