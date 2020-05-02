@@ -43,8 +43,9 @@ export const CalendarPage = () => {
       {isModalShown && <Modal hideModal={() => setModalShown(false)} />}
       <SelectorContainer>
         <div>
-          <label>Year: </label>
+          <label htmlFor="year">Year: </label>
           <input
+            name="Year"
             value={year}
             onChange={(e) => {
               selectYear(e.target.valueAsNumber);
@@ -53,8 +54,9 @@ export const CalendarPage = () => {
           />
         </div>
         <div>
-          <label>Month: </label>
+          <label htmlFor="month">Month: </label>
           <input
+            name="month"
             value={month}
             onChange={(e) => {
               selectMonth(e.target.valueAsNumber);
