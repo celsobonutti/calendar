@@ -8,6 +8,7 @@ const HeaderGrid = styled(CalendarGrid)`
   height: 2em;
 
   background-color: #1E90FF;
+  color: #F0FFFF;
 `;
 
 const HeaderLabel = styled.p`

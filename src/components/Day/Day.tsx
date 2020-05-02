@@ -46,7 +46,7 @@ export const Day = ({ day, outOfMonth }: DayProps) => {
   if (outOfMonth) {
     color = '#ACACAC';
   } else if (weekend) {
-    color = 'darkblue';
+    color = '#4169E1';
   }
   
   return (
