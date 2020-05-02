@@ -21,10 +21,6 @@ const initialState: ReminderState = {
   reminders: savedReminders,
 };
 
-interface ContextType {
-  reminders: Reminder[];
-}
-
 export const ReminderContext = React.createContext<{
   state: ReminderState;
   dispatch: Dispatch<ReminderAction>;
