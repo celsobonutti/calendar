@@ -22,9 +22,10 @@ const Table = styled.div`
 interface CalendarProps {
   year: number;
   month: number;
+  onDayClick: (arg0: Date) => void; 
 }
 
-export const Calendar = ({ year, month }: CalendarProps) => {
+export const Calendar = ({ year, month, onDayClick }: CalendarProps) => {
   const days = getDaysForMonth({ year, month });
 
   return (
@@ -33,7 +34,7 @@ export const Calendar = ({ year, month }: CalendarProps) => {
       <CalendarGrid>
         {days.map((day) => {
           let outOfMonth = getMonth(day) !== (month-1);
-          return <Day day={day} key={day.toString()} outOfMonth={outOfMonth} />;
+          return <Day day={day} key={day.toString()} outOfMonth={outOfMonth} onClick={onDayClick} />;
         })}
       </CalendarGrid>
     </Table>

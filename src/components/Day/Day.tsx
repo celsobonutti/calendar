@@ -15,10 +15,17 @@ const Container = styled.div<ContainerProps>`
   align-items: center;
   position: relative;
 
+  cursor: pointer;
+
   width: 100%;
   height: 8em;
 
-  background-color: ${props => props.outOfWeek ? '#F2F2F2' : 'white'};
+  background-color: ${(props) => (props.outOfWeek ? '#F2F2F2' : 'white')};
+
+  &:hover > p {
+    font-weight: bold;
+    transition: .2s linear;
+  }
 `;
 
 const Date = styled.p`
@@ -32,9 +39,10 @@ const Date = styled.p`
 interface DayProps {
   day: Date;
   outOfMonth: boolean;
+  onClick: Function;
 }
 
-export const Day = ({ day, outOfMonth }: DayProps) => {
+export const Day = ({ day, outOfMonth, onClick }: DayProps) => {
   const { getDateReminders } = useContext(ReminderContext);
 
   const dayReminders = getDateReminders(day);
@@ -48,9 +56,14 @@ export const Day = ({ day, outOfMonth }: DayProps) => {
   } else if (weekend) {
     color = '#4169E1';
   }
-  
+
   return (
-    <Container outOfWeek={weekend || outOfMonth}>
+    <Container
+      outOfWeek={weekend || outOfMonth}
+      onClick={() => {
+        onClick(day);
+      }}
+    >
       <Date color={color}>
         <time dateTime={format(day, 'EEEE, MMM do, yyyy')}>{getDate(day)}</time>
       </Date>

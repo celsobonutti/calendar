@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Calendar } from '../../components/Calendar/Calendar';
 import styled from 'styled-components';
+import { Modal } from '../../components/Modal/Modal';
 
 const Container = styled.div`
   display: flex;
@@ -20,6 +21,8 @@ const SelectorContainer = styled.div`
 export const CalendarPage = () => {
   const [year, setYear] = useState(new Date().getFullYear());
   const [month, setMonth] = useState(new Date().getMonth());
+  const [isModalShown, setModalShown] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<null | Date>(null);
 
   const selectMonth = (value: number) => {
     if (value > 12) {
@@ -37,6 +40,7 @@ export const CalendarPage = () => {
 
   return (
     <Container>
+      {isModalShown && <Modal hideModal={() => setModalShown(false)} />}
       <SelectorContainer>
         <div>
           <label>Year: </label>
@@ -60,7 +64,14 @@ export const CalendarPage = () => {
         </div>
       </SelectorContainer>
 
-      <Calendar year={year} month={month} />
+      <Calendar
+        onDayClick={(date) => {
+          setSelectedDate(date);
+          setModalShown(true);
+        }}
+        year={year}
+        month={month}
+      />
     </Container>
   );
 };
