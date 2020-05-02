@@ -3,7 +3,6 @@ import { Controller, ErrorMessage, useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import { v4 as UUID } from 'uuid';
 import DateTime from '@nateradebaugh/react-datetime';
-import format from 'date-fns/format';
 import '@nateradebaugh/react-datetime/scss/styles.scss';
 
 import { ColorButton } from '../UI/ColorButton';
@@ -36,7 +35,7 @@ interface ReminderFormProps {
 type FormData = {
   title: string;
   city: string;
-  date: Date;
+  datetime: Date;
   color: string;
 };
 
@@ -49,7 +48,7 @@ export const ReminderForm = ({ reminder }: ReminderFormProps) => {
       addReminder({
         city: formData.city,
         color: formData.color,
-        date: formData.date,
+        datetime: formData.datetime,
         title: formData.title,
         id: UUID(),
       });
@@ -57,7 +56,7 @@ export const ReminderForm = ({ reminder }: ReminderFormProps) => {
       editReminder(reminder.id, {
         city: formData.city,
         color: formData.color,
-        date: formData.date,
+        datetime: formData.datetime,
         title: formData.title,
       });
     }
@@ -102,8 +101,8 @@ export const ReminderForm = ({ reminder }: ReminderFormProps) => {
         <ErrorMessage name="color" errors={errors} />
         <Controller 
           as={DateTime}
-          name="date"
-          value={(watch('date'), '')}
+          name="datetime"
+          value={(watch('datetime'), '')}
           defaultValue={new Date()}
           control={control}
           rules={{

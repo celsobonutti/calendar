@@ -12,14 +12,30 @@ import {
   ReminderState,
   RemoveReminder,
 } from './reducers';
+import { parseISO } from 'date-fns';
+
+type StringifiedReminder = {
+  id: string;
+  city: string;
+  title: string;
+  datetime: string;
+  color: string;
+}
 
 const remindersString = localStorage.getItem('reminders') ?? '[]';
 
-const savedReminders = JSON.parse(remindersString) as Reminder[];
+const parsedReminders = JSON.parse(remindersString) as StringifiedReminder[];
+
+const savedReminders : Reminder[] = parsedReminders.map((reminder) => ({
+  ...reminder,
+  datetime: parseISO(reminder.datetime)
+}));
 
 const initialState: ReminderState = {
   reminders: savedReminders,
 };
+
+console.log(savedReminders);
 
 export const ReminderContext = React.createContext<{
   state: ReminderState;
@@ -27,7 +43,7 @@ export const ReminderContext = React.createContext<{
   addReminder: (reminder: Reminder) => void;
   removeReminder: (id: string) => void;
   editReminder: (id: string, newValues: ReminderCompanion) => void;
-  getDateReminders: (date: Date) => Reminder[];
+  getDateReminders: (datetime: Date) => Reminder[];
 }>({
   state: initialState,
   dispatch: () => null,
@@ -68,8 +84,8 @@ export const ReminderProvider: FunctionComponent = ({ children }) => {
     dispatch(action);
   };
 
-  const getDateReminders = (date: Date) => {
-    return state.reminders.filter((reminder) => isSameDay(reminder.date, date));
+  const getDateReminders = (datetime: Date) => {
+    return state.reminders.filter((reminder) => isSameDay(reminder.datetime, datetime));
   };
 
   const value = {
