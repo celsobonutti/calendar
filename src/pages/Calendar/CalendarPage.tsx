@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Calendar } from '../../components/Calendar/Calendar';
 import styled from 'styled-components';
-import { Modal } from '../../components/Modal/Modal';
+
+import { Calendar, Modal } from '../../components';
 
 const Container = styled.div`
   display: flex;
@@ -20,7 +20,7 @@ const SelectorContainer = styled.div`
 
 export const CalendarPage = () => {
   const [year, setYear] = useState(new Date().getFullYear());
-  const [month, setMonth] = useState(new Date().getMonth());
+  const [month, setMonth] = useState(new Date().getMonth() + 1);
   const [isModalShown, setModalShown] = useState(false);
   const [selectedDate, setSelectedDate] = useState<null | Date>(null);
 
@@ -40,7 +40,9 @@ export const CalendarPage = () => {
 
   return (
     <Container>
-      {isModalShown && <Modal hideModal={() => setModalShown(false)} />}
+      {isModalShown && (
+        <Modal hideModal={() => setModalShown(false)} />
+      )}
       <SelectorContainer>
         <div>
           <label htmlFor="year">Year: </label>
