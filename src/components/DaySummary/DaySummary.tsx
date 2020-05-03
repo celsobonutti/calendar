@@ -47,7 +47,7 @@ export const DaySummary = ({ date }: DaySummaryProps) => {
   if (isAddingNew) {
     return (
       <Container>
-        <ReminderForm onFormSubmitted={() => setIsAddingNew(false)} />
+        <ReminderForm startingDate={date} onFormSubmitted={() => setIsAddingNew(false)} />
         <CancelButton onClick={() => setIsAddingNew(false)}>Cancel</CancelButton>
       </Container>
     );
@@ -74,6 +74,7 @@ export const DaySummary = ({ date }: DaySummaryProps) => {
         <H3>These are your appointments:</H3>
         {reminders.map((reminder) => (
           <ReminderCard
+            key={reminder.id}
             reminder={reminder}
             onClickEdit={() => {
               setEditingReminder(reminder);

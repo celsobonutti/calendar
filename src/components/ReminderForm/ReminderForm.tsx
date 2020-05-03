@@ -19,6 +19,7 @@ import {
 interface ReminderFormProps {
   reminder?: Reminder;
   onFormSubmitted: Function;
+  startingDate?: Date;
 }
 
 type FormData = {
@@ -28,7 +29,7 @@ type FormData = {
   color: string;
 };
 
-export const ReminderForm = ({ reminder, onFormSubmitted }: ReminderFormProps) => {
+export const ReminderForm = ({ reminder, onFormSubmitted, startingDate }: ReminderFormProps) => {
   const { register, handleSubmit, watch, control, errors, reset } = useForm<FormData>();
   const { addReminder, editReminder } = useReminderContext();
 
@@ -94,7 +95,7 @@ export const ReminderForm = ({ reminder, onFormSubmitted }: ReminderFormProps) =
             as={FieldDateTime}
             name="datetime"
             value={(watch('datetime'), '')}
-            defaultValue={reminder?.datetime ?? null}
+            defaultValue={startingDate ?? reminder?.datetime ?? null}
             control={control}
             rules={{
               required: 'Field required.',
