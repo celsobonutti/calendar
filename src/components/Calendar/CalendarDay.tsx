@@ -1,13 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import { format, getDate, isWeekend } from 'date-fns';
+import { format, getDate, isWeekend, isToday } from 'date-fns';
 
 import { useReminderContext } from '../../stores/reminders/reminders';
 import { CompactReminder } from '../Reminders/CompactReminder';
 import { absoluteFill, device } from '../../utils/layout';
+import { theme } from '../../utils/theme';
 
 interface ContainerProps {
-  outOfWeek: boolean;
+  backgroundColor: string;
+  isToday: boolean;
 }
 
 const Ratio = styled.div.attrs({
@@ -31,10 +33,10 @@ const Container = styled.div<ContainerProps>`
 
   cursor: pointer;
 
-  background-color: ${(props) => (props.outOfWeek ? '#DDDDDD' : '#F5F5F5')};
+  background-color: ${(props) => props.backgroundColor};
 
   @media (hover: hover) {
-    opacity: 0.6;
+    opacity: ${props => props.isToday ? '1' : '0.6'};
 
     &:hover {
       opacity: 1;
@@ -74,18 +76,28 @@ export const CalendarDay = ({ day, outOfMonth, onClick }: DayProps) => {
 
   const weekend = isWeekend(day);
 
+  const today = isToday(day);
+
   let color = 'black';
+
+  let backgroundColor = '#F5F5F5';
 
   if (outOfMonth) {
     color = '#ACACAC';
+    backgroundColor = '#DDDDDD';
+  } else if (today) {
+    color = 'white';
+    backgroundColor = theme.primaryColor;
   } else if (weekend) {
     color = '#4169E1';
+    backgroundColor = '#DDDDDD';
   }
 
   return (
     <Ratio>
       <Container
-        outOfWeek={weekend || outOfMonth}
+        backgroundColor={backgroundColor}
+        isToday={today}
         onClick={() => {
           onClick(day);
         }}
