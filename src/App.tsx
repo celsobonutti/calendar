@@ -1,6 +1,7 @@
 import React from 'react';
 // eslint-disable-next-line
 import * as types from 'styled-components/cssprop';
+import 'whatwg-fetch';
 import './index.css';
 
 import { CalendarPage } from './pages/Calendar';
