@@ -23,11 +23,18 @@ export const Form = styled.form`
 `;
 
 export const FieldContainer = styled.div`
+  position: relative;
+
   margin-top: 0.4em;
   display: flex;
   flex-direction: column;
 
   width: 100%;
+`;
+
+export const CharacterCount = styled.small`
+  position: absolute;
+  right: 0;
 `;
 
 export const FieldLabel = styled.label`

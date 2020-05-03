@@ -13,6 +13,7 @@ import {
   FieldDateTime,
   FieldInput,
   SubmitButton,
+  CharacterCount,
 } from './ReminderFormStyles';
 import { CirclePicker } from 'react-color';
 
@@ -61,7 +62,8 @@ export const ReminderForm = ({ reminder, onFormSubmitted, startingDate }: Remind
       <Header>{reminder ? 'Edit reminder' : 'Create reminder'}</Header>
       <Form onSubmit={onSubmit}>
         <FieldContainer>
-          <FieldLabel htmlFor="title">Title: </FieldLabel>
+          <FieldLabel htmlFor="title">Title:</FieldLabel>
+          <CharacterCount>{watch('title')?.length ?? 0}/30</CharacterCount>
           <FieldInput
             name="title"
             type="text"
