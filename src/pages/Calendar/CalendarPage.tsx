@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import { Calendar, Modal, ReminderForm, MonthSelector } from '../../components';
+import { Calendar, DaySummary, Modal, ReminderForm, MonthSelector } from '../../components';
 import { useToggler } from '../../hooks/useToggler';
 import { AddButton } from '../../components/UI/AddButton';
 import { device } from '../../utils/layout';
@@ -75,7 +75,11 @@ export const CalendarPage = () => {
     <Container>
       {isModalShown && (
         <Modal hideModal={hideModal}>
-          <ReminderForm onFormSubmitted={hideModal} />
+          {selectedDate ? (
+            <DaySummary date={selectedDate} />
+          ) : (
+            <ReminderForm onFormSubmitted={hideModal} />
+          )}
         </Modal>
       )}
       <HeaderContainer>

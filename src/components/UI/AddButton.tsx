@@ -11,7 +11,7 @@ const Button = styled.button.attrs({
   align-items: center;
   justify-content: space-between;
 
-  padding: 4px 8px;
+  padding: 4px 4px;
   border: 2px solid black;
   border-radius: 500px;
   background-color: transparent;
@@ -20,30 +20,38 @@ const Button = styled.button.attrs({
 
   transition: 0.2s ease-in-out;
 
+  margin-left: auto;
+
   &:hover {
     background-color: #f0f0f0;
   }
 `;
 
-const Text = styled.p`
+interface TextProps {
+  alwaysShowText?: boolean;
+}
+
+const Text = styled.p<TextProps>`
   margin-left: 4px;
 
   font-size: 1.2em;
   font-weight: bold;
 
-  display: none;
+  display: ${(props) => (props.alwaysShowText ? 'block' : 'none')};
 
   @media ${device.tablet} {
     display: block;
   }
 `;
 
-
-export const AddButton = ({ onClick }: React.HTMLProps<HTMLButtonElement>) => {
+export const AddButton = ({
+  onClick,
+  alwaysShowText,
+}: React.HTMLProps<HTMLButtonElement> & TextProps) => {
   return (
     <Button onClick={onClick}>
       <Plus />
-      <Text>Add reminder</Text>
+      <Text alwaysShowText={alwaysShowText}>Add reminder</Text>
     </Button>
   );
 };
