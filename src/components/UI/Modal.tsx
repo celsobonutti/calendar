@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 //@ts-ignore
 import XCircle from '@bit/feathericons.react-feather.x-circle';
 import { absoluteFill } from '../../utils/layout';

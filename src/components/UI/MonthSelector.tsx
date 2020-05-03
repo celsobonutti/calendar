@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 //@ts-ignore
 import ArrowRight from '@bit/feathericons.react-feather.arrow-right-circle';
 //@ts-ignore

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 export const Element = styled.div.attrs(props => ({
   role: props.role ?? 'cell'

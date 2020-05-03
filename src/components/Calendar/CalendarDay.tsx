@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { format, getDate, isWeekend, isToday } from 'date-fns';
 
 import { useReminderContext } from '../../stores/reminders/reminders';
@@ -36,7 +36,7 @@ const Container = styled.div<ContainerProps>`
   background-color: ${(props) => props.backgroundColor};
 
   @media (hover: hover) {
-    opacity: ${props => props.isToday ? '1' : '0.6'};
+    opacity: ${(props) => (props.isToday ? '1' : '0.6')};
 
     overflow: scroll;
 
@@ -48,16 +48,14 @@ const Container = styled.div<ContainerProps>`
   }
 `;
 
-const DateContainer = styled.div`
+const Date = styled.p`
+  font-size: 1em;
+  color: ${(props) => props.color};
+
   @media ${device.tablet} {
     align-self: flex-end;
     margin-bottom: 0.4em;
   }
-`;
-
-const Date = styled.p`
-  font-size: 1em;
-  color: ${(props) => props.color};
 
   ${Container}:hover & {
     font-weight: bold;
@@ -103,12 +101,11 @@ export const CalendarDay = ({ day, outOfMonth, onClick }: DayProps) => {
         onClick={() => {
           onClick(day);
         }}
+        data-value={format(day, 'yyyy-MM-dd')}
       >
-        <DateContainer>
-          <Date color={color}>
-            <time dateTime={format(day, 'EEEE, MMM do, yyyy')}>{getDate(day)}</time>
-          </Date>
-        </DateContainer>
+        <Date color={color}>
+          <time dateTime={format(day, 'EEEE, MMM do, yyyy')}>{getDate(day)}</time>
+        </Date>
         {dayReminders.map((reminder) => (
           <CompactReminder reminder={reminder} key={reminder.id} />
         ))}

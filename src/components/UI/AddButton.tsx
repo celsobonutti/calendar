@@ -1,7 +1,7 @@
 import React from 'react';
 //@ts-ignore
 import Plus from '@bit/feathericons.react-feather.plus';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { device } from '../../utils/layout';
 
 const Button = styled.button.attrs({

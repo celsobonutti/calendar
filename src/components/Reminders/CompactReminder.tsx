@@ -1,6 +1,6 @@
 import React from 'react';
 import { Reminder } from '../../types';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 interface ContainerProps {
   color: string;

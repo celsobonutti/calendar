@@ -1,6 +1,6 @@
 import React from 'react';
 import { Reminder } from '../../types';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { format } from 'date-fns';
 //@ts-ignore
 import Delete from '@bit/feathericons.react-feather.trash-2';

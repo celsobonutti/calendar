@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import DateTime from '@nateradebaugh/react-datetime';
 import '@nateradebaugh/react-datetime/scss/styles.scss';
 
