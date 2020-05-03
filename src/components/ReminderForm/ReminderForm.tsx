@@ -111,7 +111,7 @@ export const ReminderForm = ({ reminder, onFormSubmitted, startingDate }: Remind
             as={CirclePicker}
             name="color"
             onChange={([event]) => event.hex}
-            color={watch('color')}
+            color={watch('color') ?? ''}
             defaultValue={reminder?.color ?? null}
             control={control}
             colors={[
