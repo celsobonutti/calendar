@@ -35,8 +35,6 @@ const initialState: ReminderState = {
   reminders: savedReminders,
 };
 
-console.log(savedReminders);
-
 const ReminderContext = React.createContext<{
   state: ReminderState;
   dispatch: Dispatch<ReminderAction>;
