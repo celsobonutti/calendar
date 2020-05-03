@@ -89,7 +89,7 @@ export const CalendarPage = () => {
           onIncrease={increaseMonth}
           onDecrease={decreaseMonth}
         />
-        <AddReminderContainer>
+        <AddReminderContainer data-cy="add-reminder-general">
           <AddButton
             onClick={() => {
               showModal();

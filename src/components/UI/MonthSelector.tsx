@@ -35,11 +35,11 @@ const InformationContainer = styled.div`
   align-items: center;
 `;
 
-const Month = styled.div`
+const CurrentMonth = styled.div`
   font-size: 1.1em;
 `;
 
-const Year = styled.div`
+const CurrentYear = styled.div`
   font-size: 1.2em;
   color: ${theme.primaryColor};
   font-weight: bold;
@@ -71,8 +71,8 @@ export const MonthSelector = ({
   <Container>
     <Left onClick={onDecrease} />
     <InformationContainer>
-      <Month>{months[currentMonth-1]}</Month>
-      <Year>{currentYear}</Year>
+      <CurrentMonth data-month={currentMonth}>{months[currentMonth - 1]}</CurrentMonth>
+      <CurrentYear data-year={currentYear}>{currentYear}</CurrentYear>
     </InformationContainer>
     <Right onClick={onIncrease} />
   </Container>
