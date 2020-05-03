@@ -67,7 +67,7 @@ export const DaySummary = ({ date }: DaySummaryProps) => {
   let content;
 
   if (reminders.length === 0) {
-    content = <H3>There are no appointments for today.</H3>;
+    content = <H3>There are no appointments for this day.</H3>;
   } else {
     content = (
       <>
