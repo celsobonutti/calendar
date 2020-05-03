@@ -5,7 +5,9 @@
   "dependencies": {
     "@bit/feathericons.react-feather.arrow-left-circle": "^1.1.6",
     "@bit/feathericons.react-feather.arrow-right-circle": "^1.1.6",
+    "@bit/feathericons.react-feather.edit": "^1.1.6",
     "@bit/feathericons.react-feather.plus": "^1.1.6",
+    "@bit/feathericons.react-feather.trash-2": "^1.1.6",
     "@bit/feathericons.react-feather.x-circle": "^1.1.6",
     "@nateradebaugh/react-datetime": "^4.3.4",
     "@testing-library/jest-dom": "^4.2.4",

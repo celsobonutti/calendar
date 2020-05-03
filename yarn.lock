@@ -1061,10 +1061,20 @@
   resolved "https://node.bit.dev/feathericons.react-feather.arrow-right-circle/-/feathericons.react-feather.arrow-right-circle-1.1.6.tgz#f8f15c7218949ce439f25e75a3638ebc2b51c2de"
   integrity sha1-+PFcchiUnOQ58l51o2OOvCtRwt4=
 
+"@bit/feathericons.react-feather.edit@^1.1.6":
+  version "1.1.6"
+  resolved "https://node.bit.dev/feathericons.react-feather.edit/-/feathericons.react-feather.edit-1.1.6.tgz#0f386b6d4604bae541529f850515ad588a956f2b"
+  integrity sha1-DzhrbUYEuuVBUp+FBRWtWIqVbys=
+
 "@bit/feathericons.react-feather.plus@^1.1.6":
   version "1.1.6"
   resolved "https://node.bit.dev/feathericons.react-feather.plus/-/feathericons.react-feather.plus-1.1.6.tgz#b60be15fada9e183fa7b7fe12175296746ca7256"
   integrity sha1-tgvhX62p4YP6e3/hIXUpZ0bKclY=
+
+"@bit/feathericons.react-feather.trash-2@^1.1.6":
+  version "1.1.6"
+  resolved "https://node.bit.dev/feathericons.react-feather.trash-2/-/feathericons.react-feather.trash-2-1.1.6.tgz#1233c8a2d17a3013a0bc3cc25e4385df415ae5e0"
+  integrity sha1-EjPIotF6MBOgvDzCXkOF30Fa5eA=
 
 "@bit/feathericons.react-feather.x-circle@^1.1.6":
   version "1.1.6"

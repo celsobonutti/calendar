@@ -22,15 +22,17 @@ const H3 = styled.h3`
 
 const CancelButton = styled.button`
   margin-top: 0.2em;
-  
+
   width: 100%;
   height: 30px;
   background-color: white;
-  
+
   border: none;
 
+  cursor: pointer;
+
   font-size: 1em;
-  color: #EC5163;
+  color: #ec5163;
 `;
 
 const AddReminderButton = styled(AddButton)`
@@ -38,7 +40,7 @@ const AddReminderButton = styled(AddButton)`
 `;
 
 export const DaySummary = ({ date }: DaySummaryProps) => {
-  const { getDateReminders } = useReminderContext();
+  const { getDateReminders, removeReminder } = useReminderContext();
   const [editingReminder, setEditingReminder] = useState<Reminder | null>(null);
   const [isAddingNew, setIsAddingNew] = useState(false);
 
@@ -73,8 +75,11 @@ export const DaySummary = ({ date }: DaySummaryProps) => {
         {reminders.map((reminder) => (
           <ReminderCard
             reminder={reminder}
-            onClick={() => {
+            onClickEdit={() => {
               setEditingReminder(reminder);
+            }}
+            onClickDelete={() => {
+              removeReminder(reminder.id);
             }}
           />
         ))}
