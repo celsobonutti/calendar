@@ -50,14 +50,14 @@ const buttonStyle = `
 
 const EditButton = styled(Edit).attrs({
   role: 'button',
-  ariaLabel: 'Edit reminder',
+  'aria-label': 'Edit reminder',
 })`
   ${buttonStyle}
 `;
 
 const DeleteButton = styled(Delete).attrs({
   role: 'button',
-  ariaLabel: 'Delete reminder',
+  'aria-label': 'Delete reminder',
 })`
   ${buttonStyle}
 `;
