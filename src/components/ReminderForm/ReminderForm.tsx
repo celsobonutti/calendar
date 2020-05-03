@@ -1,97 +1,20 @@
 import React from 'react';
 import { Controller, ErrorMessage, useForm } from 'react-hook-form';
-import styled from 'styled-components';
 import { v4 as UUID } from 'uuid';
-import DateTime from '@nateradebaugh/react-datetime';
-import '@nateradebaugh/react-datetime/scss/styles.scss';
 
 import { ColorButton } from '../UI/ColorButton';
 import { Reminder } from '../../types';
 import { useReminderContext } from '../../stores/reminders/reminders';
-import { theme } from '../../utils/theme';
-import { device } from '../../utils/layout';
-
-const Header = styled.h1`
-  font-size: 1.4rem;
-`;
-
-const Form = styled.form`
-  display: grid;
-  grid-gap: 1em;
-
-  width: 100%;
-
-  grid-template-columns: repeat(1, 1fr);
-
-  @media ${device.tablet} {
-    grid-template-columns: repeat(2, 1fr);
-  }
-`;
-
-const FieldContainer = styled.div`
-  margin-top: 0.4em;
-  display: flex;
-  flex-direction: column;
-
-  width: 100%;
-`;
-
-const FieldLabel = styled.label`
-  margin-bottom: 0.2em;
-`;
-
-const FieldInput = styled.input`
-  height: 1.4em;
-
-  padding: 0.4em;
-  font-size: 1em;
-
-  border-radius: 0.2em;
-  border: 1px solid #cecece;
-
-  &:focus {
-    transition: 0.2s ease-in-out;
-    border: 1px solid #888;
-  }
-`;
-
-const FieldDateTime = styled(DateTime)`
-  height: 1.4em;
-
-  padding: 0.4em;
-  font-size: 1em;
-
-  border-radius: 0.2em;
-  border: 1px solid #cecece;
-
-  &:focus {
-    transition: 0.2s ease-in-out;
-    border: 1px solid #888;
-  }
-`;
-
-const Error = styled.p`
-  margin-top: .2em;
-  font-size: 1em;
-  color: #D74545;
-`;
-
-const SubmitButton = styled.button`
-  border: none;
-  border-radius: 4px;
-
-  width: 100%;
-  height: 30px;
-  background-color: ${theme.primaryColor};
-
-  font-size: 1em;
-  font-weight: bold;
-  color: white;
-
-  @media ${device.tablet} {
-    grid-column: 1/3;
-  }
-`;
+import {
+  Header,
+  Form,
+  FieldContainer,
+  FieldLabel,
+  Error,
+  FieldDateTime,
+  FieldInput,
+  SubmitButton,
+} from './ReminderFormStyles';
 
 interface ReminderFormProps {
   reminder?: Reminder;
@@ -171,6 +94,7 @@ export const ReminderForm = ({ reminder, onFormSubmitted }: ReminderFormProps) =
             as={FieldDateTime}
             name="datetime"
             value={(watch('datetime'), '')}
+            defaultValue={reminder?.datetime ?? null}
             control={control}
             rules={{
               required: 'Field required.',
