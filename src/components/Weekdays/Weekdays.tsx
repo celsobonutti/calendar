@@ -1,13 +1,14 @@
 import React from 'react';
 import { Element, Group, CalendarGrid } from '../UI/Containers';
 import styled from 'styled-components';
+import { theme } from '../../utils/theme';
 
 const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 const HeaderGrid = styled(CalendarGrid)`
   height: 2em;
 
-  background-color: #1E90FF;
+  background-color: ${theme.primaryColor};
   color: #F0FFFF;
 `;
 
