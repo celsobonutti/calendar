@@ -1,5 +1,5 @@
 import React, { useReducer, Dispatch, FunctionComponent } from 'react';
-import { isSameDay } from 'date-fns';
+import { isSameDay, isBefore } from 'date-fns';
 
 import { Reminder, ReminderCompanion } from '../../types/index';
 
@@ -20,15 +20,15 @@ type StringifiedReminder = {
   title: string;
   datetime: string;
   color: string;
-}
+};
 
 const remindersString = localStorage.getItem('reminders') ?? '[]';
 
 const parsedReminders = JSON.parse(remindersString) as StringifiedReminder[];
 
-const savedReminders : Reminder[] = parsedReminders.map((reminder) => ({
+const savedReminders: Reminder[] = parsedReminders.map((reminder) => ({
   ...reminder,
-  datetime: parseISO(reminder.datetime)
+  datetime: parseISO(reminder.datetime),
 }));
 
 const initialState: ReminderState = {
@@ -85,7 +85,15 @@ export const ReminderProvider: FunctionComponent = ({ children }) => {
   };
 
   const getDateReminders = (datetime: Date) => {
-    return state.reminders.filter((reminder) => isSameDay(reminder.datetime, datetime));
+    return state.reminders
+      .filter((reminder) => isSameDay(reminder.datetime, datetime))
+      .sort((firstElement, secondElement) => {
+        if (isBefore(firstElement.datetime, secondElement.datetime)) {
+          return -1;
+        } else {
+          return 1;
+        }
+      });
   };
 
   const value = {
