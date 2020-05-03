@@ -6,6 +6,12 @@ import { format } from 'date-fns';
 import Delete from '@bit/feathericons.react-feather.trash-2';
 //@ts-ignore
 import Edit from '@bit/feathericons.react-feather.edit';
+//@ts-ignore
+import Alert from '@bit/feathericons.react-feather.alert-circle';
+//@ts-ignore
+import Loading from '@bit/folland87.a24ui.loading-spinner';
+
+import { WeatherStatus, useWeatherForecast } from '../../hooks/useWeatherForecast';
 
 interface ReminderContainerProps {
   color: string;
@@ -25,7 +31,9 @@ const ReminderContainer = styled.div<ReminderContainerProps>`
 
 const InformationContainer = styled.div.attrs({
   role: 'group',
-})``;
+})`
+  padding-left: 0.5em;
+`;
 
 const ButtonGroup = styled.div.attrs({
   role: 'group',
@@ -69,8 +77,31 @@ interface ReminderProps {
 }
 
 export const ReminderCard = ({ reminder, onClickEdit, onClickDelete }: ReminderProps) => {
+  const weather = useWeatherForecast(reminder.datetime, reminder.city);
+
+  let weatherComponent;
+
+  switch (weather.status) {
+    case WeatherStatus.Error:
+      weatherComponent = <Alert size={30} color="black" />;
+      break;
+    case WeatherStatus.Loading:
+      weatherComponent = <Loading size={30} color="black" />;
+      break;
+    case WeatherStatus.Data:
+      weatherComponent = (
+        <img
+          src={`https://www.weatherbit.io/static/img/icons/${weather.data.icon}.png`}
+          alt={weather.data.description}
+          width={30}
+          height={30}
+        />
+      );
+  }
+
   return (
     <ReminderContainer color={reminder.color}>
+      {weatherComponent}
       <InformationContainer>
         <h4>{format(reminder.datetime, 'HH:mm')}</h4>
         <p>{reminder.title}</p>
