@@ -24,9 +24,12 @@ const Content = styled.div`
 
   background-color: white;
 
+  overflow-y: scroll;
+
   ${absoluteFill}
 
   @media (hover: hover) {
+    max-height: 80vh;
     max-width: 900px;
     border-radius: 0.3em;
     position: relative;
@@ -34,10 +37,10 @@ const Content = styled.div`
 `;
 
 const CloseButton = styled(XCircle)`
-  position: absolute;
-
-  right: 10px;
-  top: 10px;
+  display: block;
+  margin-left: auto;
+  height: 30px;
+  width: 30px;
 
   cursor: pointer;
 `;
@@ -54,7 +57,7 @@ export const Modal: FunctionComponent<ModalProps> = ({ children, hideModal }) =>
           event.stopPropagation();
         }}
       >
-        <CloseButton onClick={() => hideModal()} />
+        <CloseButton size={30} onClick={() => hideModal()} />
         {children}
       </Content>
     </Overlay>
