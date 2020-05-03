@@ -47,10 +47,12 @@ const Year = styled.div`
 
 const Left = styled(ArrowLeft)`
   cursor: pointer;
+  flex-shrink: 0;
 `;
 
 const Right = styled(ArrowRight)`
   cursor: pointer;
+  flex-shrink: 0;
 `;
 
 interface MonthSelectorProps {
