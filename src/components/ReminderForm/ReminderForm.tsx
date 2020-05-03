@@ -2,7 +2,6 @@ import React from 'react';
 import { Controller, ErrorMessage, useForm } from 'react-hook-form';
 import { v4 as UUID } from 'uuid';
 
-import { ColorButton } from '../UI/ColorButton';
 import { Reminder } from '../../types';
 import { useReminderContext } from '../../stores/reminders/reminders';
 import {
@@ -15,6 +14,7 @@ import {
   FieldInput,
   SubmitButton,
 } from './ReminderFormStyles';
+import { CirclePicker } from 'react-color';
 
 interface ReminderFormProps {
   reminder?: Reminder;
@@ -78,18 +78,6 @@ export const ReminderForm = ({ reminder, onFormSubmitted, startingDate }: Remind
           </Error>
         </FieldContainer>
         <FieldContainer>
-          <FieldLabel htmlFor="city">City: </FieldLabel>
-          <FieldInput
-            name="city"
-            type="text"
-            defaultValue={reminder?.city}
-            ref={register({ required: 'Field required.' })}
-          />
-          <Error>
-            <ErrorMessage name="city" errors={errors} />
-          </Error>
-        </FieldContainer>
-        <FieldContainer>
           <FieldLabel>Date/Time: </FieldLabel>
           <Controller
             as={FieldDateTime}
@@ -106,15 +94,40 @@ export const ReminderForm = ({ reminder, onFormSubmitted, startingDate }: Remind
           </Error>
         </FieldContainer>
         <FieldContainer>
+          <FieldLabel htmlFor="city">City: </FieldLabel>
+          <FieldInput
+            name="city"
+            type="text"
+            defaultValue={reminder?.city}
+            ref={register({ required: 'Field required.' })}
+          />
+          <Error>
+            <ErrorMessage name="city" errors={errors} />
+          </Error>
+        </FieldContainer>
+        <FieldContainer>
           <FieldLabel htmlFor="color">Color: </FieldLabel>
           <Controller
-            as={ColorButton}
+            as={CirclePicker}
             name="color"
-            value={watch('color')}
-            defaultValue={reminder?.color ?? '#FFFFFF'}
+            onChange={([event]) => event.hex}
+            color={watch('color')}
+            defaultValue={reminder?.color ?? null}
             control={control}
+            colors={[
+              '#993333',
+              '#ff9900',
+              '#ffcc33',
+              '#33cc66',
+              '#669933',
+              '#006699',
+              '#0099cc',
+              '#996699',
+              '#cc6699',
+              '#999999',
+            ]}
             rules={{
-              required: 'Field required.',
+              required: 'You have to pick a color.',
               pattern: { value: /#[0-Fa-f]{0,6}/, message: 'Must be a valid HEX color value.' },
             }}
           />

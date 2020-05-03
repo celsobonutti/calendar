@@ -34,7 +34,7 @@ export const FieldLabel = styled.label`
   margin-bottom: 0.2em;
 `;
 
-export const FieldInput = styled.input`
+const inputStyle = `
   height: 1.4em;
 
   padding: 0.4em;
@@ -49,19 +49,12 @@ export const FieldInput = styled.input`
   }
 `;
 
+export const FieldInput = styled.input`
+  ${inputStyle}
+`;
+
 export const FieldDateTime = styled(DateTime)`
-  height: 1.4em;
-
-  padding: 0.4em;
-  font-size: 1em;
-
-  border-radius: 0.2em;
-  border: 1px solid #cecece;
-
-  &:focus {
-    transition: 0.2s ease-in-out;
-    border: 1px solid #888;
-  }
+  ${inputStyle}
 `;
 
 export const Error = styled.p`
