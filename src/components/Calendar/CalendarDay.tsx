@@ -10,7 +10,9 @@ interface ContainerProps {
   outOfWeek: boolean;
 }
 
-const Ratio = styled.div`
+const Ratio = styled.div.attrs({
+  role: 'gridcell',
+})`
   position: relative;
   padding-top: 80%;
 `;
@@ -30,19 +32,12 @@ const Container = styled.div<ContainerProps>`
   cursor: pointer;
 
   background-color: ${(props) => (props.outOfWeek ? '#DDDDDD' : '#F5F5F5')};
-`;
 
-const Overlay = styled.div`
-  display: none;
   @media (hover: hover) {
-    display: block;
-    ${absoluteFill}
-
-    background-color: white;
-    opacity: 0.4;
+    opacity: 0.6;
 
     &:hover {
-      opacity: 0;
+      opacity: 1;
 
       transition: opacity 0.2s ease-in-out;
     }
@@ -72,7 +67,7 @@ interface DayProps {
   onClick: Function;
 }
 
-export const Day = ({ day, outOfMonth, onClick }: DayProps) => {
+export const CalendarDay = ({ day, outOfMonth, onClick }: DayProps) => {
   const { getDateReminders } = useContext(ReminderContext);
 
   const dayReminders = getDateReminders(day);
@@ -95,7 +90,6 @@ export const Day = ({ day, outOfMonth, onClick }: DayProps) => {
           onClick(day);
         }}
       >
-        <Overlay />
         <DateContainer>
           <Date color={color}>
             <time dateTime={format(day, 'EEEE, MMM do, yyyy')}>{getDate(day)}</time>

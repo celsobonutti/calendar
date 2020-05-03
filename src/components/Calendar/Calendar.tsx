@@ -4,7 +4,7 @@ import { Weekdays } from '../../components';
 import styled from 'styled-components';
 import { CalendarGrid } from '../UI/Containers';
 import { getDaysForMonth } from '../../utils/getDaysForMonth';
-import { Day } from '../Day/Day';
+import { CalendarDay } from './CalendarDay';
 import { getMonth } from 'date-fns';
 
 const Table = styled.div`
@@ -34,7 +34,7 @@ export const Calendar = ({ year, month, onDayClick }: CalendarProps) => {
       <CalendarGrid>
         {days.map((day) => {
           let outOfMonth = getMonth(day) !== (month-1);
-          return <Day day={day} key={day.toString()} outOfMonth={outOfMonth} onClick={onDayClick} />;
+          return <CalendarDay day={day} key={day.toString()} outOfMonth={outOfMonth} onClick={onDayClick} />;
         })}
       </CalendarGrid>
     </Table>
