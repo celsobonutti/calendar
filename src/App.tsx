@@ -1,4 +1,5 @@
 import React from 'react';
+// eslint-disable-next-line
 import * as types from 'styled-components/cssprop';
 import './index.css';
 
