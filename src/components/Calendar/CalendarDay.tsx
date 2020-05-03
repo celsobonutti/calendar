@@ -38,6 +38,8 @@ const Container = styled.div<ContainerProps>`
   @media (hover: hover) {
     opacity: ${props => props.isToday ? '1' : '0.6'};
 
+    overflow: scroll;
+
     &:hover {
       opacity: 1;
 
