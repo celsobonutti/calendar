@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { format, getDate, isWeekend } from 'date-fns';
 
-import { ReminderContext } from '../../stores/reminders/reminders';
+import { useReminderContext } from '../../stores/reminders/reminders';
 import { CompactReminder } from '../Reminders/CompactReminder';
 import { absoluteFill, device } from '../../utils/layout';
 
@@ -68,7 +68,7 @@ interface DayProps {
 }
 
 export const CalendarDay = ({ day, outOfMonth, onClick }: DayProps) => {
-  const { getDateReminders } = useContext(ReminderContext);
+  const { getDateReminders } = useReminderContext();
 
   const dayReminders = getDateReminders(day);
 

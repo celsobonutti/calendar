@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Controller, ErrorMessage, useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import { v4 as UUID } from 'uuid';
@@ -7,7 +7,7 @@ import '@nateradebaugh/react-datetime/scss/styles.scss';
 
 import { ColorButton } from '../UI/ColorButton';
 import { Reminder } from '../../types';
-import { ReminderContext } from '../../stores/reminders/reminders';
+import { useReminderContext } from '../../stores/reminders/reminders';
 import { theme } from '../../utils/theme';
 import { device } from '../../utils/layout';
 
@@ -107,7 +107,7 @@ type FormData = {
 
 export const ReminderForm = ({ reminder, onFormSubmitted }: ReminderFormProps) => {
   const { register, handleSubmit, watch, control, errors, reset } = useForm<FormData>();
-  const { addReminder, editReminder } = useContext(ReminderContext);
+  const { addReminder, editReminder } = useReminderContext();
 
   const onSubmit = handleSubmit((formData: FormData) => {
     if (!reminder) {

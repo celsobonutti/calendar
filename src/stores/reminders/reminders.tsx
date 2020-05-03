@@ -1,4 +1,4 @@
-import React, { useReducer, Dispatch, FunctionComponent } from 'react';
+import React, { useReducer, Dispatch, FunctionComponent, useContext } from 'react';
 import { isSameDay, isBefore } from 'date-fns';
 
 import { Reminder, ReminderCompanion } from '../../types/index';
@@ -37,7 +37,7 @@ const initialState: ReminderState = {
 
 console.log(savedReminders);
 
-export const ReminderContext = React.createContext<{
+const ReminderContext = React.createContext<{
   state: ReminderState;
   dispatch: Dispatch<ReminderAction>;
   addReminder: (reminder: Reminder) => void;
@@ -107,3 +107,5 @@ export const ReminderProvider: FunctionComponent = ({ children }) => {
 
   return <ReminderContext.Provider value={value}>{children}</ReminderContext.Provider>;
 };
+
+export const useReminderContext = () => useContext(ReminderContext);
