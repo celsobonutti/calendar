@@ -8,6 +8,8 @@ import '@nateradebaugh/react-datetime/scss/styles.scss';
 import { ColorButton } from '../UI/ColorButton';
 import { Reminder } from '../../types';
 import { ReminderContext } from '../../stores/reminders/reminders';
+import { theme } from '../../utils/theme';
+import { device } from '../../utils/layout';
 
 const Header = styled.h1`
   font-size: 1.4rem;
@@ -15,14 +17,19 @@ const Header = styled.h1`
 
 const Form = styled.form`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
   grid-gap: 1em;
 
   width: 100%;
+
+  grid-template-columns: repeat(1, 1fr);
+
+  @media ${device.tablet} {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
 
 const FieldContainer = styled.div`
-  padding-top: 1em;
+  margin-top: 0.4em;
   display: flex;
   flex-direction: column;
 
@@ -63,19 +70,27 @@ const FieldDateTime = styled(DateTime)`
   }
 `;
 
-const SubmitButton = styled.button`
-  grid-column: 1/3;
+const Error = styled.p`
+  margin-top: .2em;
+  font-size: 1em;
+  color: #D74545;
+`;
 
+const SubmitButton = styled.button`
   border: none;
   border-radius: 4px;
 
   width: 100%;
   height: 30px;
-  background-color: #1e90ff;
+  background-color: ${theme.primaryColor};
 
   font-size: 1em;
   font-weight: bold;
   color: white;
+
+  @media ${device.tablet} {
+    grid-column: 1/3;
+  }
 `;
 
 interface ReminderFormProps {
@@ -134,7 +149,9 @@ export const ReminderForm = ({ reminder, onFormSubmitted }: ReminderFormProps) =
               maxLength: { message: 'Maximum of 30 characters.', value: 30 },
             })}
           />
-          <ErrorMessage name="title" errors={errors} />
+          <Error>
+            <ErrorMessage name="title" errors={errors} />
+          </Error>
         </FieldContainer>
         <FieldContainer>
           <FieldLabel htmlFor="city">City: </FieldLabel>
@@ -144,7 +161,9 @@ export const ReminderForm = ({ reminder, onFormSubmitted }: ReminderFormProps) =
             defaultValue={reminder?.city}
             ref={register({ required: 'Field required.' })}
           />
-          <ErrorMessage name="city" errors={errors} />
+          <Error>
+            <ErrorMessage name="city" errors={errors} />
+          </Error>
         </FieldContainer>
         <FieldContainer>
           <FieldLabel>Date/Time: </FieldLabel>
@@ -157,6 +176,9 @@ export const ReminderForm = ({ reminder, onFormSubmitted }: ReminderFormProps) =
               required: 'Field required.',
             }}
           />
+          <Error>
+            <ErrorMessage name="datetime" errors={errors} />
+          </Error>
         </FieldContainer>
         <FieldContainer>
           <FieldLabel htmlFor="color">Color: </FieldLabel>
@@ -171,7 +193,9 @@ export const ReminderForm = ({ reminder, onFormSubmitted }: ReminderFormProps) =
               pattern: { value: /#[0-Fa-f]{0,6}/, message: 'Must be a valid HEX color value.' },
             }}
           />
-          <ErrorMessage name="color" errors={errors} />
+          <Error>
+            <ErrorMessage name="color" errors={errors} />
+          </Error>
         </FieldContainer>
         <SubmitButton type="submit">{reminder ? 'Save Reminder' : 'Create Reminder'}</SubmitButton>
       </Form>

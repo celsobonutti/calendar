@@ -15,8 +15,8 @@ const Table = styled.div`
   overflow: hidden;
 
   border-radius: 0.3em;
+  max-width: 900px;
   width: 100%;
-  max-width: 800px;
 `;
 
 interface CalendarProps {

@@ -8,7 +8,7 @@ interface ButtonProps {
 }
 
 const Button = styled.button<ButtonProps>`
-  width: 30px;
+  width: 100%;
   height: 30px;
   border: 2px solid #ccc;
   border-radius: 4px;
@@ -48,6 +48,7 @@ export const ColorButton = ({ value, onChange }: ColorButtonProps) => {
           <TwitterPicker
             onChange={(event) => {
               onChange(event.hex);
+              hidePicker();
             }}
             color={value}
           />

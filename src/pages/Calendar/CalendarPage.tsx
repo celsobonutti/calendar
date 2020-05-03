@@ -1,22 +1,40 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import { Calendar, Modal, ReminderForm } from '../../components';
+import { Calendar, Modal, ReminderForm, MonthSelector } from '../../components';
 import { useToggler } from '../../hooks/useToggler';
+import { AddButton } from '../../components/UI/AddButton';
+import { device } from '../../utils/layout';
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  padding: 2em;
+
+  @media ${device.desktop} {
+    padding: 0px;
+  }
 `;
 
-const SelectorContainer = styled.div`
+const HeaderContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  justify-content: center;
   align-items: center;
 
-  margin: 2em;
+  position: relative;
+
+  width: 100%;
+  max-width: 900px;
+
+  margin: 1em 0px;
+`;
+
+const AddReminderContainer = styled.div`
+  position: absolute;
+  right: 10px;
 `;
 
 export const CalendarPage = () => {
@@ -25,18 +43,32 @@ export const CalendarPage = () => {
   const { setFalse: hideModal, setTrue: showModal, state: isModalShown } = useToggler(false);
   const [selectedDate, setSelectedDate] = useState<null | Date>(null);
 
-  const selectMonth = (value: number) => {
-    if (value > 12) {
-      setMonth(1);
-    } else if (value < 0) {
-      setMonth(12);
-    } else {
-      setMonth(value);
+  const increaseYear = () => {
+    setYear((currentYear) => currentYear + 1);
+  };
+
+  const decreaseYear = () => {
+    if (year > 0) {
+      setYear((currentYear) => currentYear - 1);
     }
   };
 
-  const selectYear = (value: number) => {
-    setYear(value);
+  const increaseMonth = () => {
+    if (month === 12) {
+      setMonth(1);
+      increaseYear();
+    } else {
+      setMonth((currentMonth) => currentMonth + 1);
+    }
+  };
+
+  const decreaseMonth = () => {
+    if (month === 1) {
+      setMonth(12);
+      decreaseYear();
+    } else {
+      setMonth((currentMonth) => currentMonth - 1);
+    }
   };
 
   return (
@@ -46,31 +78,22 @@ export const CalendarPage = () => {
           <ReminderForm onFormSubmitted={hideModal} />
         </Modal>
       )}
-      <SelectorContainer>
-        <div>
-          <label htmlFor="year">Year: </label>
-          <input
-            name="Year"
-            value={year}
-            onChange={(e) => {
-              selectYear(e.target.valueAsNumber);
+      <HeaderContainer>
+        <MonthSelector
+          currentMonth={month}
+          currentYear={year}
+          onIncrease={increaseMonth}
+          onDecrease={decreaseMonth}
+        />
+        <AddReminderContainer>
+          <AddButton
+            onClick={() => {
+              showModal();
+              setSelectedDate(null);
             }}
-            type="number"
           />
-        </div>
-        <div>
-          <label htmlFor="month">Month: </label>
-          <input
-            name="month"
-            value={month}
-            onChange={(e) => {
-              selectMonth(e.target.valueAsNumber);
-            }}
-            type="number"
-          />
-        </div>
-      </SelectorContainer>
-
+        </AddReminderContainer>
+      </HeaderContainer>
       <Calendar
         onDayClick={(date) => {
           setSelectedDate(date);

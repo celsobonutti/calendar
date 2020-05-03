@@ -1051,6 +1051,26 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
+"@bit/feathericons.react-feather.arrow-left-circle@^1.1.6":
+  version "1.1.6"
+  resolved "https://node.bit.dev/feathericons.react-feather.arrow-left-circle/-/feathericons.react-feather.arrow-left-circle-1.1.6.tgz#26caaa095c72d567fc292fc902455431d2a40b72"
+  integrity sha1-JsqqCVxy1Wf8KS/JAkVUMdKkC3I=
+
+"@bit/feathericons.react-feather.arrow-right-circle@^1.1.6":
+  version "1.1.6"
+  resolved "https://node.bit.dev/feathericons.react-feather.arrow-right-circle/-/feathericons.react-feather.arrow-right-circle-1.1.6.tgz#f8f15c7218949ce439f25e75a3638ebc2b51c2de"
+  integrity sha1-+PFcchiUnOQ58l51o2OOvCtRwt4=
+
+"@bit/feathericons.react-feather.plus@^1.1.6":
+  version "1.1.6"
+  resolved "https://node.bit.dev/feathericons.react-feather.plus/-/feathericons.react-feather.plus-1.1.6.tgz#b60be15fada9e183fa7b7fe12175296746ca7256"
+  integrity sha1-tgvhX62p4YP6e3/hIXUpZ0bKclY=
+
+"@bit/feathericons.react-feather.x-circle@^1.1.6":
+  version "1.1.6"
+  resolved "https://node.bit.dev/feathericons.react-feather.x-circle/-/feathericons.react-feather.x-circle-1.1.6.tgz#acd0165b553f74395ad9dbbb554f35571ba783d0"
+  integrity sha1-rNAWW1U/dDla2du7VU81Vxung9A=
+
 "@cnakazawa/watch@^1.0.3":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@cnakazawa/watch/-/watch-1.0.4.tgz#f864ae85004d0fcab6f50be9141c4da368d1656a"

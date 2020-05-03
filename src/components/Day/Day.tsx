@@ -4,12 +4,20 @@ import { format, getDate, isWeekend } from 'date-fns';
 
 import { ReminderContext } from '../../stores/reminders/reminders';
 import { CompactReminder } from '../Reminders/CompactReminder';
+import { absoluteFill, device } from '../../utils/layout';
 
 interface ContainerProps {
   outOfWeek: boolean;
 }
 
+const Ratio = styled.div`
+  position: relative;
+  padding-top: 80%;
+`;
+
 const Container = styled.div<ContainerProps>`
+  ${absoluteFill}
+
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -17,39 +25,35 @@ const Container = styled.div<ContainerProps>`
   overflow: hidden;
   white-space: nowrap;
 
-  position: relative;
-  padding: .5em;
+  padding: 5%;
 
   cursor: pointer;
 
-  height: 6em;
   background-color: ${(props) => (props.outOfWeek ? '#DDDDDD' : '#F5F5F5')};
 `;
 
 const Overlay = styled.div`
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
+  display: none;
+  @media (hover: hover) {
+    display: block;
+    ${absoluteFill}
 
-  background-color: white;
-  opacity: 0.4;
+    background-color: white;
+    opacity: 0.4;
 
-  &:hover {
-    opacity: 0;
+    &:hover {
+      opacity: 0;
 
-    transition: opacity 0.2s ease-in-out;
+      transition: opacity 0.2s ease-in-out;
+    }
   }
 `;
 
 const DateContainer = styled.div`
-  align-self: flex-end;
-  margin-bottom: .4em;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @media ${device.tablet} {
+    align-self: flex-end;
+    margin-bottom: 0.4em;
+  }
 `;
 
 const Date = styled.p`
@@ -84,21 +88,23 @@ export const Day = ({ day, outOfMonth, onClick }: DayProps) => {
   }
 
   return (
-    <Container
-      outOfWeek={weekend || outOfMonth}
-      onClick={() => {
-        onClick(day);
-      }}
-    >
-      <Overlay />
-      <DateContainer>
-        <Date color={color}>
-          <time dateTime={format(day, 'EEEE, MMM do, yyyy')}>{getDate(day)}</time>
-        </Date>
-      </DateContainer>
-      {dayReminders.map((reminder) => (
-        <CompactReminder reminder={reminder} key={reminder.id} />
-      ))}
-    </Container>
+    <Ratio>
+      <Container
+        outOfWeek={weekend || outOfMonth}
+        onClick={() => {
+          onClick(day);
+        }}
+      >
+        <Overlay />
+        <DateContainer>
+          <Date color={color}>
+            <time dateTime={format(day, 'EEEE, MMM do, yyyy')}>{getDate(day)}</time>
+          </Date>
+        </DateContainer>
+        {dayReminders.map((reminder) => (
+          <CompactReminder reminder={reminder} key={reminder.id} />
+        ))}
+      </Container>
+    </Ratio>
   );
 };

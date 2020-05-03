@@ -1,5 +1,8 @@
 import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
+//@ts-ignore
+import XCircle from '@bit/feathericons.react-feather.x-circle';
+import { absoluteFill } from '../../utils/layout';
 
 const Overlay = styled.div`
   position: fixed;
@@ -17,13 +20,26 @@ const Overlay = styled.div`
 `;
 
 const Content = styled.div`
-  border-radius: 0.3em;
-  max-width: 900px;
-  z-index: 201;
-  
   padding: 1em;
 
   background-color: white;
+
+  ${absoluteFill}
+
+  @media (hover: hover) {
+    max-width: 900px;
+    border-radius: 0.3em;
+    position: relative;
+  }
+`;
+
+const CloseButton = styled(XCircle)`
+  position: absolute;
+
+  right: 10px;
+  top: 10px;
+
+  cursor: pointer;
 `;
 
 interface ModalProps {
@@ -33,9 +49,14 @@ interface ModalProps {
 export const Modal: FunctionComponent<ModalProps> = ({ children, hideModal }) => {
   return (
     <Overlay onClick={() => hideModal()}>
-      <Content onClick={event => {
-        event.stopPropagation();
-      }}>{children}</Content>
+      <Content
+        onClick={(event) => {
+          event.stopPropagation();
+        }}
+      >
+        <CloseButton onClick={() => hideModal()} />
+        {children}
+      </Content>
     </Overlay>
   );
 };
