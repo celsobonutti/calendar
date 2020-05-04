@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 import { format } from 'date-fns';
-//@ts-ignore
-import Delete from '@bit/feathericons.react-feather.trash-2';
 
 import { useReminderContext } from '../../stores/reminders/reminders';
 import { Reminder } from '../../types';
@@ -11,10 +9,9 @@ import { ReminderCard } from './Reminder';
 import { AddButton } from '../UI/AddButton';
 import { Confirmation } from '../UI/Confirmation';
 import { useToggler } from '../../hooks/useToggler';
-import { theme } from '../../utils/theme';
+import { DeleteButton } from '../UI/DeleteButton';
 
-const Container = styled.div`
-`;
+const Container = styled.div``;
 
 interface DaySummaryProps {
   date: Date;
@@ -47,29 +44,6 @@ const ButtonContainer = styled.div`
   flex-wrap: wrap;
 
   margin-top: 3em;
-`;
-
-const DeleteButton = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 0.2em 0.4em;
-
-  font-size: 0.8em;
-  font-weight: bold;
-  color: white;
-
-  background-color: ${theme.cancelColor};
-
-  &:hover {
-    background-color: ${theme.cancelDarken};
-  }
-
-  &[disabled] {
-    cursor: initial;
-    background-color: #cecece;
-  }
 `;
 
 export const DaySummary = ({ date }: DaySummaryProps) => {
@@ -149,10 +123,7 @@ export const DaySummary = ({ date }: DaySummaryProps) => {
         ))}
       </div>
       <ButtonContainer>
-        <DeleteButton disabled={reminders.length === 0} onClick={showDeletingConfirmation}>
-          <Delete />
-          Delete All
-        </DeleteButton>
+        <DeleteButton disabled={reminders.length === 0} onClick={showDeletingConfirmation} />
         <AddButton alwaysShowText dataCy="add-reminder" onClick={showCreationForm} />
       </ButtonContainer>
     </Container>
