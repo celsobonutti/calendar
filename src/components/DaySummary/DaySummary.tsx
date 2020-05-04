@@ -11,13 +11,7 @@ import { Confirmation } from '../UI/Confirmation';
 import { useToggler } from '../../hooks/useToggler';
 import { DeleteButton } from '../UI/DeleteButton';
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-
-
-  height: 100%;
-`;
+const Container = styled.div``;
 
 interface DaySummaryProps {
   date: Date;
@@ -51,7 +45,7 @@ const ButtonContainer = styled.div`
 
   padding-bottom: 1em;
 
-  margin-top: auto;
+  margin-top: 3em;
 `;
 
 export const DaySummary = ({ date }: DaySummaryProps) => {

@@ -25,12 +25,14 @@ const Content = styled.div`
   ${absoluteFill}
 
   @media ${device.tablet} and (hover: hover) {
-    min-height: 300px;
     max-height: 80vh;
     width: 100%;
     max-width: 700px;
 
-    margin: auto;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
     
     border-radius: 0.3em;
   }
