@@ -19,19 +19,17 @@ const Overlay = styled.div`
 `;
 
 const Container = styled.div`
-  height: 100%;
-  width: 100%;
-  max-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  min-height: 100px;
   max-width: 400px;
 
   padding: 1em;
 
   background-color: white;
   border-radius: 4px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 `;
 
 const Text = styled.h2`

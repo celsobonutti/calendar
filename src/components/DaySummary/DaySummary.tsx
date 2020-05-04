@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
-import { format } from 'date-fns';
+import format from 'date-fns/format';
 
 import { useReminderContext } from '../../stores/reminders/reminders';
 import { Reminder } from '../../types';
@@ -11,7 +11,13 @@ import { Confirmation } from '../UI/Confirmation';
 import { useToggler } from '../../hooks/useToggler';
 import { DeleteButton } from '../UI/DeleteButton';
 
-const Container = styled.div``;
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+
+
+  height: 100%;
+`;
 
 interface DaySummaryProps {
   date: Date;
@@ -43,7 +49,9 @@ const ButtonContainer = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
 
-  margin-top: 3em;
+  padding-bottom: 1em;
+
+  margin-top: auto;
 `;
 
 export const DaySummary = ({ date }: DaySummaryProps) => {

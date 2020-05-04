@@ -12,10 +12,6 @@ const Overlay = styled.div`
   left: 0px;
   z-index: 200;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
   background-color: rgba(0, 0, 0, 0.3);
 `;
 
@@ -29,11 +25,14 @@ const Content = styled.div`
   ${absoluteFill}
 
   @media (hover: hover) {
+    min-height: 300px;
     max-height: 80vh;
     width: 100%;
     max-width: 700px;
+
+    margin: auto;
+    
     border-radius: 0.3em;
-    position: relative;
   }
 `;
 
