@@ -42,7 +42,7 @@ describe('Reminders', () => {
     cy.get('@reminders').children().first().as('added-reminder');
     cy.get('@added-reminder')
       .should('contain', title)
-      .should('contain', format(date, 'HH:mm'))
+      .should('contain', format(date, 'hh:mm a'))
       .should('have.css', 'background-color')
       .and('eq', orange);
   });
