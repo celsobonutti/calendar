@@ -30,7 +30,7 @@ interface TextProps {
 }
 
 const Text = styled.p<TextProps>`
-  margin-left: 4px;
+  margin: 0 4px;
   flex-shrink: 0;
 
   font-size: 1.2em;
