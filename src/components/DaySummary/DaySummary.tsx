@@ -11,6 +11,7 @@ import { ReminderCard } from './Reminder';
 import { AddButton } from '../UI/AddButton';
 import { Confirmation } from '../UI/Confirmation';
 import { useToggler } from '../../hooks/useToggler';
+import { theme } from '../../utils/theme';
 
 const Container = styled.div`
   padding: 1em 0px;
@@ -60,7 +61,11 @@ const DeleteButton = styled.button`
   font-weight: bold;
   color: white;
 
-  background-color: #ed655a;
+  background-color: ${theme.cancelColor};
+
+  &:hover{
+    background-color: ${theme.cancelDarken};
+  }
 `;
 
 export const DaySummary = ({ date }: DaySummaryProps) => {

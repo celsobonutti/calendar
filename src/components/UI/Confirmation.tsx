@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import {theme} from '../../utils/theme';
+
 const Overlay = styled.div`
   position: fixed;
   top: 0px;
@@ -58,15 +60,23 @@ const Confirm = styled.button`
 
   margin-left: 20%;
 
-  background-color: #1e90ff;
+  background-color: ${theme.primaryColor};
   color: white;
+
+  &:hover{
+    background-color: ${theme.primaryDarken}
+  }
 `;
 
 const Cancel = styled.button`
   ${buttonStyle}
 
   background-color: white;
-  color: #ed655a;
+  color: ${theme.cancelColor};
+
+  &:hover{
+    color: ${theme.cancelDarken}
+  }
 `;
 
 interface ConfirmationProps {

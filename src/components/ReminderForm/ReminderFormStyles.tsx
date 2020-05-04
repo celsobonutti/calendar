@@ -82,6 +82,10 @@ export const SubmitButton = styled.button`
   font-weight: bold;
   color: white;
 
+  &:hover {
+    background-color: ${theme.primaryDarken};
+  }
+
   @media ${device.tablet} {
     grid-column: 1/3;
   }
