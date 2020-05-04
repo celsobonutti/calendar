@@ -18,6 +18,8 @@ const Ratio = styled.div.attrs({
 })`
   position: relative;
   padding-top: 80%;
+  
+  cursor: pointer;
 `;
 
 const Container = styled.div<ContainerProps>`
@@ -95,16 +97,19 @@ export const CalendarDay = ({ day, outOfMonth, onClick }: DayProps) => {
   let color = 'black';
 
   let backgroundColor = '#F5F5F5';
+  
+  if (weekend) {
+    color = '#4169E1';
+    backgroundColor = '#DDDDDD';
+  }
 
   if (outOfMonth) {
     color = '#ACACAC';
-    backgroundColor = '#DDDDDD';
-  } else if (today) {
+  }
+
+  if (today) {
     color = 'white';
     backgroundColor = theme.primaryColor;
-  } else if (weekend) {
-    color = '#4169E1';
-    backgroundColor = '#DDDDDD';
   }
 
   return (
