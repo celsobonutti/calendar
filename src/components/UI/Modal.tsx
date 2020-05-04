@@ -31,7 +31,7 @@ const Content = styled.div`
   @media (hover: hover) {
     max-height: 80vh;
     width: 100%;
-    max-width: 800px;
+    max-width: 700px;
     border-radius: 0.3em;
     position: relative;
   }

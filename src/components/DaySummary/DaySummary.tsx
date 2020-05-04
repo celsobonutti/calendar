@@ -45,6 +45,8 @@ const ButtonContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   flex-wrap: wrap;
+
+  margin-top: 1em;
 `;
 
 const DeleteButton = styled.button`
