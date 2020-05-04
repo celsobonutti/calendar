@@ -2,6 +2,7 @@
   "name": "calendar",
   "version": "0.1.0",
   "private": true,
+  "license": "ISC",
   "dependencies": {
     "@bit/feathericons.react-feather.alert-circle": "^1.1.6",
     "@bit/feathericons.react-feather.arrow-left-circle": "^1.1.6",
