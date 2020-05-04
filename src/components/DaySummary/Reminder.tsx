@@ -106,7 +106,7 @@ export const ReminderCard = ({ reminder, onClickEdit, onClickDelete }: ReminderP
       {weatherComponent}
       <InformationContainer>
         <h4>
-          {format(reminder.datetime, 'HH:mm')} - {reminder.city}
+          {format(reminder.datetime, 'hh:mm a')} - {reminder.city}
         </h4>
         <p>{reminder.title}</p>
       </InformationContainer>
