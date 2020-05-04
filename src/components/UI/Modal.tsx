@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import styled from 'styled-components/macro';
 //@ts-ignore
 import XCircle from '@bit/feathericons.react-feather.x-circle';
-import { absoluteFill } from '../../utils/layout';
+import { absoluteFill, device } from '../../utils/layout';
 
 const Overlay = styled.div`
   position: fixed;
@@ -24,7 +24,7 @@ const Content = styled.div`
 
   ${absoluteFill}
 
-  @media (hover: hover) {
+  @media ${device.tablet} and (hover: hover) {
     min-height: 300px;
     max-height: 80vh;
     width: 100%;
