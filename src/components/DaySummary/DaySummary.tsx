@@ -64,14 +64,16 @@ export const DaySummary = ({ date }: DaySummaryProps) => {
 
   const reminders = getDateReminders(date);
 
-  let content;
+  let content =
+    reminders.length === 0
+      ? 'There are no appointments for this day.'
+      : 'These are your appointments:';
 
-  if (reminders.length === 0) {
-    content = <H3>There are no appointments for this day.</H3>;
-  } else {
-    content = (
-      <>
-        <H3>These are your appointments:</H3>
+  return (
+    <Container>
+      <h1>{format(date, 'EEEE, MMM do, yyyy')}</h1>
+      <H3>{content}</H3>
+      <div data-cy="day-reminders">
         {reminders.map((reminder) => (
           <ReminderCard
             key={reminder.id}
@@ -84,15 +86,12 @@ export const DaySummary = ({ date }: DaySummaryProps) => {
             }}
           />
         ))}
-      </>
-    );
-  }
-
-  return (
-    <Container>
-      <h1>{format(date, 'EEEE, MMM do, yyyy')}</h1>
-      {content}
-      <AddReminderButton alwaysShowText onClick={() => setIsAddingNew(true)} />
+      </div>
+      <AddReminderButton
+        alwaysShowText
+        dataCy="add-reminder"
+        onClick={() => setIsAddingNew(true)}
+      />
     </Container>
   );
 };

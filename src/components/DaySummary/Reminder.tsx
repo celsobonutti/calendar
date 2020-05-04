@@ -59,6 +59,7 @@ const buttonStyle = `
 const EditButton = styled(Edit).attrs({
   role: 'button',
   'aria-label': 'Edit reminder',
+  'data-cy': 'edit-button',
 })`
   ${buttonStyle}
 `;
@@ -66,6 +67,7 @@ const EditButton = styled(Edit).attrs({
 const DeleteButton = styled(Delete).attrs({
   role: 'button',
   'aria-label': 'Delete reminder',
+  'data-cy': 'delete-button',
 })`
   ${buttonStyle}
 `;
@@ -103,7 +105,9 @@ export const ReminderCard = ({ reminder, onClickEdit, onClickDelete }: ReminderP
     <ReminderContainer color={reminder.color}>
       {weatherComponent}
       <InformationContainer>
-        <h4>{format(reminder.datetime, 'HH:mm')}</h4>
+        <h4>
+          {format(reminder.datetime, 'HH:mm')} - {reminder.city}
+        </h4>
         <p>{reminder.title}</p>
       </InformationContainer>
       <ButtonGroup>

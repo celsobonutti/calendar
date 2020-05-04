@@ -33,6 +33,7 @@ interface TextProps {
 
 const Text = styled.p<TextProps>`
   margin-left: 4px;
+  flex-shrink: 0;
 
   font-size: 1.2em;
   font-weight: bold;
@@ -44,12 +45,18 @@ const Text = styled.p<TextProps>`
   }
 `;
 
+interface ButtonProps {
+  alwaysShowText?: boolean;
+  dataCy: string;
+}
+
 export const AddButton = ({
   onClick,
   alwaysShowText,
-}: React.HTMLProps<HTMLButtonElement> & TextProps) => {
+  dataCy
+}: React.HTMLProps<HTMLButtonElement> & ButtonProps) => {
   return (
-    <Button onClick={onClick}>
+    <Button onClick={onClick} data-cy={dataCy}>
       <Plus />
       <Text alwaysShowText={alwaysShowText}>Add reminder</Text>
     </Button>

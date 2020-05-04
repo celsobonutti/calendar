@@ -53,13 +53,44 @@ const Date = styled.p`
   color: ${(props) => props.color};
 
   @media ${device.tablet} {
-    align-self: flex-end;
+    align-self: flex-start;
     margin-bottom: 0.4em;
   }
 
   ${Container}:hover & {
     font-weight: bold;
     transition: 0.2s linear;
+  }
+`;
+
+interface ReminderDotProps {
+  backgroundColor: string;
+}
+
+const ReminderDot = styled.div<ReminderDotProps>`
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background-color: ${(props) => props.backgroundColor};
+
+  align-self: center;
+
+  @media ${device.tablet} {
+    display: none;
+  }
+`;
+
+const Reminders = styled.div.attrs({
+  'data-cy': 'date-reminders',
+})`
+  display: none;
+
+  width: 100%;
+
+  @media ${device.tablet} {
+    display: block;
   }
 `;
 
@@ -106,9 +137,12 @@ export const CalendarDay = ({ day, outOfMonth, onClick }: DayProps) => {
         <Date color={color}>
           <time dateTime={format(day, 'EEEE, MMM do, yyyy')}>{getDate(day)}</time>
         </Date>
-        {dayReminders.map((reminder) => (
-          <CompactReminder reminder={reminder} key={reminder.id} />
-        ))}
+        {dayReminders.length > 0 && <ReminderDot backgroundColor={dayReminders[0].color} />}
+        <Reminders>
+          {dayReminders.map((reminder) => (
+            <CompactReminder reminder={reminder} key={reminder.id} />
+          ))}
+        </Reminders>
       </Container>
     </Ratio>
   );

@@ -25,3 +25,7 @@ yarn-error.log*
 .vscode/
 
 .env
+
+.nyc_output/
+
+cypress/

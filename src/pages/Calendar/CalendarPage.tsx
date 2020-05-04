@@ -27,7 +27,7 @@ const HeaderContainer = styled.div`
   position: relative;
 
   width: 100%;
-  max-width: 900px;
+  max-width: 1000px;
 
   margin: 1em 0px;
 `;
@@ -89,8 +89,9 @@ export const CalendarPage = () => {
           onIncrease={increaseMonth}
           onDecrease={decreaseMonth}
         />
-        <AddReminderContainer data-cy="add-reminder-general">
+        <AddReminderContainer>
           <AddButton
+            dataCy="add-reminder-general"
             onClick={() => {
               showModal();
               setSelectedDate(null);

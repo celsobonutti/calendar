@@ -15,7 +15,7 @@ const Table = styled.div`
   overflow: hidden;
 
   border-radius: 0.3em;
-  max-width: 900px;
+  max-width: 1000px;
   width: 100%;
 `;
 

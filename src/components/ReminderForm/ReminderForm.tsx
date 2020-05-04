@@ -1,6 +1,8 @@
 import React from 'react';
 import { Controller, ErrorMessage, useForm } from 'react-hook-form';
 import { v4 as UUID } from 'uuid';
+import parse from 'date-fns/parse';
+import isDate from 'date-fns/isDate';
 
 import { Reminder } from '../../types';
 import { useReminderContext } from '../../stores/reminders/reminders';
@@ -71,7 +73,7 @@ export const ReminderForm = ({ reminder, onFormSubmitted, startingDate }: Remind
             placeholder="My reminder..."
             defaultValue={reminder?.title}
             ref={register({
-              required: 'Field required.',
+              required: 'This field is required.',
               maxLength: { message: 'Maximum of 30 characters.', value: 30 },
             })}
           />
@@ -85,10 +87,25 @@ export const ReminderForm = ({ reminder, onFormSubmitted, startingDate }: Remind
             as={FieldDateTime}
             name="datetime"
             value={(watch('datetime'), '')}
+            onChange={([event]) => {
+              if (isDate(event)) return event;
+              let newDate = parse(event, 'MM/dd/yyyy hh:mm aaa', new Date());
+              if (newDate.toString() === 'Invalid Date') {
+                return event;
+              } else {
+                return newDate;
+              }
+            }}
             defaultValue={startingDate ?? reminder?.datetime ?? null}
             control={control}
             rules={{
-              required: 'Field required.',
+              required: 'This field is required.',
+              validate: (value) => {
+                return (
+                  isDate(value) ||
+                  'Invalid date. Please use the format of the picker.'
+                );
+              },
             }}
           />
           <Error>
@@ -101,14 +118,14 @@ export const ReminderForm = ({ reminder, onFormSubmitted, startingDate }: Remind
             name="city"
             type="text"
             defaultValue={reminder?.city}
-            ref={register({ required: 'Field required.' })}
+            ref={register({ required: 'This field is required.' })}
           />
           <Error>
             <ErrorMessage name="city" errors={errors} />
           </Error>
         </FieldContainer>
         <FieldContainer>
-          <FieldLabel htmlFor="color">Color: </FieldLabel>
+          <FieldLabel htmlFor="color">Pick a color: </FieldLabel>
           <Controller
             as={CirclePicker}
             name="color"
@@ -129,7 +146,7 @@ export const ReminderForm = ({ reminder, onFormSubmitted, startingDate }: Remind
               '#999999',
             ]}
             rules={{
-              required: 'You have to pick a color.',
+              required: 'Please, pick a color.',
               pattern: { value: /#[0-Fa-f]{0,6}/, message: 'Must be a valid HEX color value.' },
             }}
           />
@@ -137,7 +154,9 @@ export const ReminderForm = ({ reminder, onFormSubmitted, startingDate }: Remind
             <ErrorMessage name="color" errors={errors} />
           </Error>
         </FieldContainer>
-        <SubmitButton type="submit">{reminder ? 'Save Reminder' : 'Create Reminder'}</SubmitButton>
+        <SubmitButton type="submit" data-cy="save-reminder">
+          {reminder ? 'Save Reminder' : 'Create Reminder'}
+        </SubmitButton>
       </Form>
     </>
   );
