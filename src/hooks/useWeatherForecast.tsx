@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { isBefore, isToday, differenceInCalendarDays } from 'date-fns';
-import { Error } from '../components/ReminderForm/ReminderFormStyles';
+import isBefore from 'date-fns/isBefore';
+import isToday from 'date-fns/isToday';
+import differenceInCalendarDays from 'date-fns/differenceInCalendarDays';
 
 export enum WeatherStatus {
   Loading = 'LOADING',

@@ -1,5 +1,7 @@
 import React, { useReducer, Dispatch, FunctionComponent, useContext } from 'react';
-import { isSameDay, isBefore } from 'date-fns';
+import isSameDay from 'date-fns/isSameDay';
+import isBefore from 'date-fns/isBefore';
+import parseISO from 'date-fns/parseISO';
 
 import { Reminder, ReminderCompanion } from '../../types/index';
 
@@ -13,7 +15,6 @@ import {
   RemoveReminder,
   RemoveDateReminder,
 } from './reducers';
-import { parseISO } from 'date-fns';
 
 type StringifiedReminder = {
   id: string;

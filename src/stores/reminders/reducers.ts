@@ -1,5 +1,5 @@
 import { Reminder, ReminderCompanion, replaceValues } from '../../types';
-import { isSameDay } from 'date-fns';
+import isSameDay from 'date-fns/isSameDay';
 
 export interface ReminderState {
   reminders: Reminder[];

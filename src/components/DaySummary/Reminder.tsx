@@ -1,7 +1,7 @@
 import React from 'react';
 import { Reminder } from '../../types';
 import styled from 'styled-components/macro';
-import { format } from 'date-fns';
+import format from 'date-fns/format';
 //@ts-ignore
 import Delete from '@bit/feathericons.react-feather.trash-2';
 //@ts-ignore

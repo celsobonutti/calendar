@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { format, getDate, isWeekend, isToday } from 'date-fns';
+import format from 'date-fns/format';
+import getDate from 'date-fns/getDate';
+import isWeekend from 'date-fns/isWeekend';
+import isToday from 'date-fns/isToday';
 
 import { useReminderContext } from '../../stores/reminders/reminders';
 import { CompactReminder } from './CompactReminder';
@@ -18,7 +21,7 @@ const Ratio = styled.div.attrs({
 })`
   position: relative;
   padding-top: 80%;
-  
+
   cursor: pointer;
 `;
 

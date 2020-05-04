@@ -3,6 +3,7 @@ import { Controller, ErrorMessage, useForm } from 'react-hook-form';
 import { v4 as UUID } from 'uuid';
 import parse from 'date-fns/parse';
 import isDate from 'date-fns/isDate';
+import isSameDay from 'date-fns/isSameDay';
 
 import { Reminder } from '../../types';
 import { useReminderContext } from '../../stores/reminders/reminders';
@@ -95,6 +96,12 @@ export const ReminderForm = ({ reminder, onFormSubmitted, startingDate }: Remind
               } else {
                 return newDate;
               }
+            }}
+            isValidDate={(currentDate : Date) => {
+              if (startingDate && !isSameDay(currentDate, startingDate)) {
+                return false;
+              }
+              return true;
             }}
             defaultValue={startingDate ?? reminder?.datetime ?? null}
             control={control}

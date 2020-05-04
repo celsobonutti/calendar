@@ -1,11 +1,11 @@
 import React from 'react';
+import getMonth from 'date-fns/getMonth';
+import styled from 'styled-components/macro';
 
 import { Weekdays } from '../../components';
-import styled from 'styled-components/macro';
 import { CalendarGrid } from '../UI/Containers';
 import { getDaysForMonth } from '../../utils/getDaysForMonth';
 import { CalendarDay } from './CalendarDay';
-import { getMonth } from 'date-fns';
 
 const Table = styled.div`
   display: flex;
