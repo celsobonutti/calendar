@@ -14,8 +14,6 @@ import { useToggler } from '../../hooks/useToggler';
 import { theme } from '../../utils/theme';
 
 const Container = styled.div`
-  padding: 1em 0px;
-  position: relative;
 `;
 
 interface DaySummaryProps {

@@ -47,11 +47,17 @@ const CloseButton = styled(XCircle)`
 
   transition: 0.2s linear;
 
+  cursor: pointer;
+
   &:hover {
     background-color: #f0f0f0;
   }
 
-  cursor: pointer;
+  @media (hover: hover) {
+    position: absolute;
+    right: 10px;
+    left: 10px;
+  }
 `;
 
 interface ModalProps {
