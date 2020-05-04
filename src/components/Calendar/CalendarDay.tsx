@@ -3,9 +3,10 @@ import styled from 'styled-components/macro';
 import { format, getDate, isWeekend, isToday } from 'date-fns';
 
 import { useReminderContext } from '../../stores/reminders/reminders';
-import { CompactReminder } from '../Reminders/CompactReminder';
+import { CompactReminder } from './CompactReminder';
 import { absoluteFill, device } from '../../utils/layout';
 import { theme } from '../../utils/theme';
+import { ReminderDot } from './ReminderDot';
 
 interface ContainerProps {
   backgroundColor: string;
@@ -38,7 +39,8 @@ const Container = styled.div<ContainerProps>`
   @media (hover: hover) {
     opacity: ${(props) => (props.isToday ? '1' : '0.6')};
 
-    overflow: scroll;
+    overflow-y: auto;
+    overflow-x: hidden;
 
     &:hover {
       opacity: 1;
@@ -63,32 +65,13 @@ const Date = styled.p`
   }
 `;
 
-interface ReminderDotProps {
-  backgroundColor: string;
-}
-
-const ReminderDot = styled.div<ReminderDotProps>`
-  margin-top: auto;
-  margin-bottom: auto;
-  width: 0.4rem;
-  height: 0.4rem;
-  border-radius: 50%;
-  background-color: ${(props) => props.backgroundColor};
-
-  align-self: center;
-
-  @media ${device.tablet} {
-    display: none;
-  }
-`;
-
 const Reminders = styled.div.attrs({
   'data-cy': 'date-reminders',
 })`
   display: none;
 
   width: 100%;
-
+  
   @media ${device.tablet} {
     display: block;
   }

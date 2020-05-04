@@ -24,7 +24,7 @@ const Content = styled.div`
 
   background-color: white;
 
-  overflow-y: scroll;
+  overflow-y: auto;
 
   ${absoluteFill}
 
