@@ -87,7 +87,7 @@ interface ConfirmationProps {
 
 export const Confirmation = ({ onConfirm, onCancel, text }: ConfirmationProps) => {
   return (
-    <Overlay>
+    <Overlay onClick={() => onCancel()}>
       <Container
         onClick={(event) => {
           event.stopPropagation();

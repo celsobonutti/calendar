@@ -18,8 +18,6 @@ const Button = styled.button.attrs({
 
   cursor: pointer;
 
-  transition: 0.2s ease-in-out;
-
   margin-left: auto;
 
   &:hover {

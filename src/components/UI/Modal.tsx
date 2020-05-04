@@ -43,6 +43,14 @@ const CloseButton = styled(XCircle)`
   height: 30px;
   width: 30px;
 
+  border-radius: 50%;
+
+  transition: 0.2s linear;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
+
   cursor: pointer;
 `;
 
