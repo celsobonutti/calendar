@@ -11,6 +11,7 @@ import {
   reminderReducer,
   ReminderState,
   RemoveReminder,
+  RemoveDateReminder,
 } from './reducers';
 import { parseISO } from 'date-fns';
 
@@ -42,6 +43,7 @@ const ReminderContext = React.createContext<{
   removeReminder: (id: string) => void;
   editReminder: (id: string, newValues: ReminderCompanion) => void;
   getDateReminders: (datetime: Date) => Reminder[];
+  deleteAllDayReminders: (date: Date) => void;
 }>({
   state: initialState,
   dispatch: () => null,
@@ -49,6 +51,7 @@ const ReminderContext = React.createContext<{
   removeReminder: () => null,
   editReminder: () => null,
   getDateReminders: () => [],
+  deleteAllDayReminders: () => null
 });
 
 export const ReminderProvider: FunctionComponent = ({ children }) => {
@@ -94,6 +97,15 @@ export const ReminderProvider: FunctionComponent = ({ children }) => {
       });
   };
 
+  const deleteAllDayReminders = (date: Date) => {
+    const action : RemoveDateReminder = {
+      type: Actions.RemoveDate,
+      date: date
+    };
+
+    dispatch(action);
+  }
+
   const value = {
     state,
     dispatch,
@@ -101,6 +113,7 @@ export const ReminderProvider: FunctionComponent = ({ children }) => {
     removeReminder,
     editReminder,
     getDateReminders,
+    deleteAllDayReminders
   };
 
   return <ReminderContext.Provider value={value}>{children}</ReminderContext.Provider>;

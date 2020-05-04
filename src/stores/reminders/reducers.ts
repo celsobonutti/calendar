@@ -1,4 +1,5 @@
 import { Reminder, ReminderCompanion, replaceValues } from '../../types';
+import { isSameDay } from 'date-fns';
 
 export interface ReminderState {
   reminders: Reminder[];
@@ -8,6 +9,7 @@ export enum Actions {
   Add = 'ADD',
   Remove = 'REMOVE',
   Edit = 'EDIT',
+  RemoveDate = 'REMOVE_DATE',
 }
 
 export interface AddReminder {
@@ -26,7 +28,12 @@ export interface EditReminder {
   newValues: ReminderCompanion;
 }
 
-export type ReminderAction = AddReminder | RemoveReminder | EditReminder;
+export interface RemoveDateReminder {
+  type: Actions.RemoveDate;
+  date: Date;
+}
+
+export type ReminderAction = AddReminder | RemoveReminder | EditReminder | RemoveDateReminder;
 
 export const reminderReducer = (state: ReminderState, action: ReminderAction) => {
   switch (action.type) {
@@ -48,6 +55,13 @@ export const reminderReducer = (state: ReminderState, action: ReminderAction) =>
           return [...previous, current];
         }
       }, []);
+      localStorage.setItem('reminders', JSON.stringify(newReminders));
+      return { ...state, reminders: newReminders };
+    }
+    case Actions.RemoveDate: {
+      const newReminders = state.reminders.filter(
+        (reminder) => !isSameDay(reminder.datetime, action.date)
+      );
       localStorage.setItem('reminders', JSON.stringify(newReminders));
       return { ...state, reminders: newReminders };
     }
