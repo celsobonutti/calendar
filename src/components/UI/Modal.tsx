@@ -30,7 +30,8 @@ const Content = styled.div`
 
   @media (hover: hover) {
     max-height: 80vh;
-    max-width: 900px;
+    width: 100%;
+    max-width: 800px;
     border-radius: 0.3em;
     position: relative;
   }
