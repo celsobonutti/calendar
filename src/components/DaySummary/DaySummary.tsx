@@ -9,7 +9,7 @@ import { Reminder } from '../../types';
 import { ReminderForm } from '../ReminderForm/ReminderForm';
 import { ReminderCard } from './Reminder';
 import { AddButton } from '../UI/AddButton';
-import { Confirmation } from './DeleteAllConfirmation';
+import { Confirmation } from '../UI/Confirmation';
 import { useToggler } from '../../hooks/useToggler';
 
 const Container = styled.div`
@@ -58,12 +58,13 @@ const DeleteButton = styled.button`
   font-weight: bold;
   color: white;
 
-  background-color: #ED655A;
+  background-color: #ed655a;
 `;
 
 export const DaySummary = ({ date }: DaySummaryProps) => {
   const { getDateReminders, removeReminder, deleteAllDayReminders } = useReminderContext();
   const [editingReminder, setEditingReminder] = useState<Reminder | null>(null);
+  const [deletingReminder, setDeletingReminder] = useState<Reminder | null>(null);
   const {
     state: isDeletingAll,
     setTrue: showDeletingConfirmation,
@@ -98,20 +99,28 @@ export const DaySummary = ({ date }: DaySummaryProps) => {
       ? 'There are no appointments for this day.'
       : 'These are your appointments:';
 
-  if (isDeletingAll) {
-    return (
-      <Confirmation
-        onConfirm={() => {
-          deleteAllDayReminders(date);
-          hideDeletingConfirmation();
-        }}
-        onCancel={hideDeletingConfirmation}
-      />
-    );
-  }
-
   return (
     <Container>
+      {deletingReminder && (
+        <Confirmation
+          onConfirm={() => {
+            removeReminder(deletingReminder.id);
+            setDeletingReminder(null);
+          }}
+          onCancel={() => setDeletingReminder(null)}
+          text={`You are going to delete ${deletingReminder.title}. Are you sure?`}
+        />
+      )}
+      {isDeletingAll && (
+        <Confirmation
+          onConfirm={() => {
+            deleteAllDayReminders(date);
+            hideDeletingConfirmation();
+          }}
+          onCancel={hideDeletingConfirmation}
+          text="You are going to delete every reminder for this day. Are you sure?"
+        />
+      )}
       <h1>{format(date, 'EEEE, MMM do, yyyy')}</h1>
       <H3>{content}</H3>
       <div data-cy="day-reminders">
@@ -123,7 +132,7 @@ export const DaySummary = ({ date }: DaySummaryProps) => {
               setEditingReminder(reminder);
             }}
             onClickDelete={() => {
-              removeReminder(reminder.id);
+              setDeletingReminder(reminder);
             }}
           />
         ))}

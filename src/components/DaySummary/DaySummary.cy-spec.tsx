@@ -68,6 +68,7 @@ describe('Reminders', () => {
 
     cy.get('@reminders').children().first().as('reminder');
     cy.get('@reminder').children().find('[data-cy=delete-button]').click();
+    cy.get('[data-cy=confirmation-confirm]').click();
 
     cy.get('@reminders').should('be.empty');
   })
