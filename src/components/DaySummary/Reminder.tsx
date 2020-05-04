@@ -33,12 +33,15 @@ const InformationContainer = styled.div.attrs({
   role: 'group',
 })`
   padding-left: 0.5em;
+  overflow: hidden;
+  overflow-wrap: break-word;
 `;
 
 const ButtonGroup = styled.div.attrs({
   role: 'group',
 })`
   margin-left: auto;
+  flex-shrink: 0;
 `;
 
 const buttonStyle = `
@@ -72,6 +75,18 @@ const DeleteButton = styled(Delete).attrs({
   ${buttonStyle}
 `;
 
+const AlertIcon = styled(Alert)`
+  flex-shrink: 0;
+`;
+
+const LoadingIcon = styled(Loading)`
+  flex-shrink: 0;
+`;
+
+const Image = styled.img`
+  flex-shrink: 0;
+`;
+
 interface ReminderProps {
   reminder: Reminder;
   onClickEdit: Function;
@@ -85,14 +100,14 @@ export const ReminderCard = ({ reminder, onClickEdit, onClickDelete }: ReminderP
 
   switch (weather.status) {
     case WeatherStatus.Error:
-      weatherComponent = <Alert size={30} color="black" />;
+      weatherComponent = <AlertIcon size={30} color="black" />;
       break;
     case WeatherStatus.Loading:
-      weatherComponent = <Loading size={30} color="black" />;
+      weatherComponent = <LoadingIcon size={30} color="black" />;
       break;
     case WeatherStatus.Data:
       weatherComponent = (
-        <img
+        <Image
           src={`https://www.weatherbit.io/static/img/icons/${weather.data.icon}.png`}
           alt={weather.data.description}
           width={30}
