@@ -23,7 +23,8 @@ interface DaySummaryProps {
 }
 
 const H3 = styled.h3`
-  margin-bottom: 0.5em;
+  margin: 1em 0;
+  font-weight: normal;
 `;
 
 const CancelButton = styled.button`
@@ -47,7 +48,7 @@ const ButtonContainer = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
 
-  margin-top: 1em;
+  margin-top: 3em;
 `;
 
 const DeleteButton = styled.button`
@@ -63,8 +64,13 @@ const DeleteButton = styled.button`
 
   background-color: ${theme.cancelColor};
 
-  &:hover{
+  &:hover {
     background-color: ${theme.cancelDarken};
+  }
+
+  &[disabled] {
+    cursor: initial;
+    background-color: #cecece;
   }
 `;
 
@@ -145,7 +151,7 @@ export const DaySummary = ({ date }: DaySummaryProps) => {
         ))}
       </div>
       <ButtonContainer>
-        <DeleteButton onClick={showDeletingConfirmation}>
+        <DeleteButton disabled={reminders.length === 0} onClick={showDeletingConfirmation}>
           <Delete />
           Delete All
         </DeleteButton>

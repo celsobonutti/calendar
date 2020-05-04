@@ -12,6 +12,10 @@ button {
   transition: color 0.2s linear, background-color 0.2s linear;
 }
 
+h1, h2, h3 {
+  color: #1E1E1E;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Lato', 'Segoe UI', 'Roboto', 'Oxygen',
